@@ -1,0 +1,472 @@
+::-webkit-scrollbar {
+    width: 4px;
+    height:4px;
+}
+::-webkit-scrollbar-button {
+    width: 0px;
+    height:0px;
+}
+::-webkit-scrollbar-track {
+    background:rgba(153, 153, 153, 0.4);
+}
+::-webkit-scrollbar-thumb {
+    background:rgb(26, 188, 156);
+}
+::-webkit-scrollbar-thumb:hover {
+    background:rgb(26, 188, 156);
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/lato/lato-black-webfont.eot');
+  src: url('../fonts/lato/lato-black-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/lato/lato-black-webfont.woff') format('woff'), url('../fonts/lato/lato-black-webfont.ttf') format('truetype'), url('../fonts/lato/lato-black-webfont.svg#latoblack') format('svg');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/lato/lato-bold-webfont.eot');
+  src: url('../fonts/lato/lato-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/lato/lato-bold-webfont.woff') format('woff'), url('../fonts/lato/lato-bold-webfont.ttf') format('truetype'), url('../fonts/lato/lato-bold-webfont.svg#latobold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/lato/lato-bolditalic-webfont.eot');
+  src: url('../fonts/lato/lato-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/lato/lato-bolditalic-webfont.woff') format('woff'), url('../fonts/lato/lato-bolditalic-webfont.ttf') format('truetype'), url('../fonts/lato/lato-bolditalic-webfont.svg#latobold_italic') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/lato/lato-italic-webfont.eot');
+  src: url('../fonts/lato/lato-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/lato/lato-italic-webfont.woff') format('woff'), url('../fonts/lato/lato-italic-webfont.ttf') format('truetype'), url('../fonts/lato/lato-italic-webfont.svg#latoitalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/lato/lato-light-webfont.eot');
+  src: url('../fonts/lato/lato-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/lato/lato-light-webfont.woff') format('woff'), url('../fonts/lato/lato-light-webfont.ttf') format('truetype'), url('../fonts/lato/lato-light-webfont.svg#latolight') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/lato/lato-regular-webfont.eot');
+  src: url('../fonts/lato/lato-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/lato/lato-regular-webfont.woff') format('woff'), url('../fonts/lato/lato-regular-webfont.ttf') format('truetype'), url('../fonts/lato/lato-regular-webfont.svg#latoregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Flat-UI-Icons";
+  src: url("../fonts/Flat-UI-Icons.eot");
+  src: url("../fonts/Flat-UI-Icons.eot?#iefix") format("embedded-opentype"), url("../fonts/Flat-UI-Icons.woff") format("woff"), url("../fonts/Flat-UI-Icons.ttf") format("truetype"), url("../fonts/Flat-UI-Icons.svg#Flat-UI-Icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  margin: 0;
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+}
+.tourBracket-head{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    height: 100px;
+}
+.tourBracket-title{
+    padding: 38px 20px 38px 20px;
+    font-size: 24px;
+    color: white;
+    display: inline-block;
+}
+.tourBracket-title-divider{
+  padding: 25px 0 20px 0;
+  margin: 0 0 0 7px;
+  border-left: 1px solid white;
+  display: inline-block;
+}
+#tourBracket-inner{
+    overflow-y: auto;
+    overflow-x: auto;
+}
+#tourBracket-body-head{
+    margin: 15px 0 5px 10px;
+}
+#tourBracket-body-head > div{
+  display: inline-block;
+  width: 100px;
+  margin: 0 42px 0 0;
+  text-align: center;
+  border-bottom: 1px solid #1abc9c;
+  padding: 0 0 10px 0;
+  color: #2c3e50;
+        font-size: 16px;
+}
+
+
+
+
+#tourBracket-group{
+    margin: 10px;
+    font-family: Arial !important;
+    font-size: 14px;
+}
+.tourBracket-gBlock > div{
+    width: 116px;
+    height: 23px;
+    margin: 0 0 1px 0;
+    overflow: hidden;
+    transition: background 0.4s ease;
+}
+.tourBracket-gBlock{
+    display: inline-block;
+    margin: 0 20px 0 0;
+}
+.tourBracket-gBlock > p{
+    margin: 5px 0 12px 0;
+    display: block;
+    width: 116px;
+    text-align: center;
+    color: #34495e;
+    border-bottom: 1px solid #1abc9c;
+    padding: 0 0 10px 0;
+    font-size: 16px;
+}
+.tourBracket-gBlock > div > div{
+    white-space: nowrap;
+    overflow: hidden;
+    height: 23px;
+    display: inline-block;
+    padding: 3px 0 3px;
+}
+.tourBracket-gBlock > div > div:first-of-type{
+    text-indent: 3px;
+    width: 76px;
+    background: #ECF0F1;
+}
+.tourBracket-gBlock > div > div:last-of-type{
+    text-align: center;
+    width: 40px;
+    background: #F2F5F5;
+}
+
+.tourBracket-backet-title{
+    margin: 25px 10px 20px 10px;
+    border-bottom: 1px solid #bdc3c7;
+    padding: 0 0 5px;
+    font-size: 20px;
+    color: #34495e; 
+}
+.tourBracket-backet-title > a{
+    font-size: 16px;
+    text-decoration: none;
+    color: #16a085;
+    cursor: pointer;
+
+}
+.tourBracket-backet-title > a:hover{
+    color: #1abc9c;
+
+}
+
+
+
+.tourBracket-link{ 
+    text-decoration: none !important;  
+    color: white;
+}
+.tourBracket-link:hover{  
+    color: #1abc9c;
+}
+.tourBracket-link:active{ 
+    color: #1abc9c;
+}
+
+
+
+/* jQuery Bracket | Copyright (c) Teijo Laine 2011-2013 | Licenced under the MIT licence */
+div.jQBracket {
+    font-family: Arial;
+    font-size: 14px;
+    position: relative;
+}
+div.jQBracket .tools {
+    position: absolute;
+    top: 0;
+    color: #fff;
+}
+div.jQBracket .tools span {
+    cursor: pointer;
+    margin: 5px;
+    display: block;
+    text-align: center;
+    width: 18px;
+    height: 18px;
+    background-color: #666;
+}
+div.jQBracket .tools span:hover {
+    background-color: #999;
+}
+div.jQBracket .finals {
+    float: right;
+    right: 0;
+    clear: right;
+    position: relative;
+}
+div.jQBracket .bracket {
+    float: right;
+    clear: left;
+}
+div.jQBracket .loserBracket {
+    float: right;
+    clear: left;
+    position: relative;
+}
+div.jQBracket .round {
+    position: relative;
+    width: 100px;
+    margin-right: 40px;
+    float: left;
+}
+div.jQBracket .match {
+    position: relative;
+}
+div.jQBracket .editable {
+    cursor: pointer;
+}
+div.jQBracket .team {
+    position: relative;
+    z-index: 1;
+    float: left;
+    background-color: #ecf0f1;
+    width: 100px;
+    cursor: default;
+}
+div.jQBracket .team:first-child {
+    border-bottom: 1px solid #999;
+}
+div.jQBracket .team input {
+    font-size: 12px;
+    padding: 0;
+    width: inherit;
+    border: 0;
+    margin: 0;
+}
+div.jQBracket .team div.label {
+    padding: 3px;
+    position: absolute;
+    width: 70px;
+    height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+div.jQBracket .team div.label[disabled] {
+    cursor: default;
+}
+div.jQBracket .team div.score {
+    float: right;
+    padding: 3px;
+    background-color: rgba(255, 255, 255, .3);
+    text-align: center;
+    width: 20px;
+}
+div.jQBracket .team div.score[disabled] {
+    color: #999;
+    cursor: default;
+}
+div.jQBracket .team div.label input.error, div.jQBracket .team div.score input.error {
+    background-color: #fcc;
+}
+div.jQBracket .team.np {
+    background-color: #666;
+    color: #ecf0f1;
+}
+div.jQBracket .team.na {
+    background-color: #999;
+    color: #ccc;
+}
+div.jQBracket .team.win {
+    color: #333;
+}
+div.jQBracket .team.win div.score {
+    color: #2c3e50;
+}
+div.jQBracket .team.lose div.score {
+    color: #900;
+}
+div.jQBracket .team.lose {
+    background-color: #ddd;
+    color: #999;
+}
+div.jQBracket .team.tie div.score {
+    color: #00f;
+}
+div.jQBracket .team.highlightWinner {
+    background-color: #1dd2af;
+    color: #2c3e50;
+}
+div.jQBracket .team.highlightLoser {
+    background-color: #bdc3c7;
+    color: #2c3e50;
+}
+div.jQBracket .team.highlight {
+    background-color: rgba(26, 188, 156, 0.65);
+    color: #2c3e50;
+}
+div.jQBracket .teamContainer {
+    z-index: 1;
+    position: relative;
+    float: left;
+}
+div.jQBracket .connector {
+    border: 2px solid #666;
+    border-left-style: none;
+    position: absolute;
+    z-index: 1;
+}
+div.jQBracket .connector div.connector {
+    border: 0;
+    border-bottom: 2px solid #666;
+    height: 0;
+    position: absolute;
+}
+div.jQBracket .connector.highlightWinner, div.jQBracket .connector div.connector.highlightWinner {
+    border-color: #1dd2af;
+}
+div.jQBracket .connector.highlightLoser, div.jQBracket .connector div.connector.highlightLoser {
+    border-color: #ccc;
+}
+div.jQBracket .connector.highlight, div.jQBracket .connector div.connector.highlight {
+    border-color: rgba(26, 188, 156, 0.65);
+}
+div.jQBracket .np .connector, div.jQBracket .np .connector div.connector {
+    border-color: #222;
+}
+div.jQBracket .bubble {
+    height: 22px;
+    line-height: 22px;
+    width: 30px;
+    right: -35px;
+    position: absolute;
+    text-align: center;
+    font-size: 11px;
+}
+div.jQBracket .bubble.third {
+    background-color: #963;
+    color: #d95;
+}
+div.jQBracket .bubble.fourth {
+    background-color: #678;
+    color: #ccd;
+}
+div.jQBracket .bubble:after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+div.jQBracket .bubble:after {
+    left: -5px;
+    border-left: 0;
+}
+div.jQBracket .bubble.third:after {
+    border-right: 6px solid #963;
+}
+div.jQBracket .bubble.fourth:after {
+    border-right: 6px solid #678;
+}
+div.jQBracket .highlightWinner .bubble {
+    background-color: #1dd2af;
+    color: #2c3e50;
+}
+div.jQBracket .highlightWinner .bubble:after {
+    border-right-color: #1dd2af;
+}
+div.jQBracket .highlightLoser .bubble {
+    background-color: #ccc;
+    color: #333;
+}
+div.jQBracket .highlightLoser .bubble:after {
+    border-right-color: #ccc;
+}
+div.jQBracket.rl .finals {
+    float: left;
+    left: 0;
+    clear: left;
+}
+div.jQBracket.rl .bracket {
+    float: left;
+    clear: right;
+}
+div.jQBracket.rl .loserBracket {
+    float: left;
+    clear: right;
+}
+div.jQBracket.rl .round {
+    margin-right: 0;
+    margin-left: 40px;
+    float: right;
+}
+div.jQBracket.rl .team {
+    float: right;
+}
+div.jQBracket.rl .team div.label {
+    right: 0;
+}
+div.jQBracket.rl .team div.score {
+    float: left;
+}
+div.jQBracket.rl .teamContainer {
+    float: right;
+}
+div.jQBracket.rl .connector {
+    border-left-style: solid;
+    border-right-style: none;
+    border-width: 2px;
+}
+div.jQBracket.rl .connector.highlightWinner, div.jQBracket.rl .connector div.connector.highlightWinner {
+    border-color: #1dd2af;
+}
+div.jQBracket.rl .connector.highlightLoser, div.jQBracket.rl .connector div.connector.highlightLoser {
+    border-color: #ccc;
+}
+div.jQBracket.rl .connector.highlight, div.jQBracket.rl .connector div.connector.highlight {
+    border-color: #0c0;
+}
+div.jQBracket.rl .bubble {
+    left: -35px;
+}
+div.jQBracket.rl .bubble.third {
+    background-color: #963;
+    color: #310;
+}
+div.jQBracket.rl .bubble.fourth {
+    background-color: #678;
+    color: #ccd;
+}
+div.jQBracket.rl .bubble:after {
+    left: auto;
+    right: -5px;
+    border-left: 5px solid transparent;
+    border-right: 0;
+}
+div.jQBracket.rl .bubble.third:after {
+    border-right: 0;
+    border-left: 6px solid #963;
+}
+div.jQBracket.rl .bubble.fourth:after {
+    border-right: 0;
+    border-left: 6px solid #678;
+}
+div.jQBracket.rl .highlightWinner .bubble:after {
+    border-left-color: #bdc3c7;
+}
+div.jQBracket.rl .highlightLoser .bubble:after {
+    border-left-color: #ccc;
+}

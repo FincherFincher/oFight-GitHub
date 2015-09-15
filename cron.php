@@ -29,7 +29,7 @@
 
 
         $id = $tour->cronStartTour();
-        if(!empty($id))
+        if(empty($id))
         {
             foreach ($id as $key => $value)
             {
