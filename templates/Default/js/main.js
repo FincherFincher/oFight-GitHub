@@ -1485,12 +1485,16 @@ function testAjax(){
                             }
 
                             //Данные противника
-                            if(uStatus.tourStatus != 'EnemyEmpty' && uStatus.tourStatus != 'UserWinPlace_1' && uStatus.tourStatus != 'UserWinPlace_2' && uStatus.tourStatus != 'UserWinPlace_3' && uStatus.tourStatus != 'TourEndForUser' && uStatus.tourStatus != 'ShowConfirm' && uStatus.tourStatus != 'ResultError' && uStatus.tourStatus != 'WaitGroupEnd' )
-                            {
+                            if(uStatus.tourStatus != 'EnemyEmpty' && uStatus.tourStatus != 'UserWinPlace_1' && uStatus.tourStatus != 'UserWinPlace_2' && uStatus.tourStatus != 'UserWinPlace_3' && uStatus.tourStatus != 'TourEndForUser' && uStatus.tourStatus != 'ShowConfirm' && uStatus.tourStatus != 'ResultError' && uStatus.tourStatus != 'WaitGroupEnd' ){
                                 $('#uTour-2').show();
                                 $('#uTour-3').show();
                             }
-
+                        
+                        //------> Cancel result
+                            if(uStatus.tourStatus == 'EnemyEmpty' || uStatus.tourStatus == 'ResultError'){
+                                $('#uTour-8').show(); 
+                            }
+                        
                             //Ввести результат пользователя
                             if(uStatus.tourStatus == 'UserResultEmpty')
                             {
@@ -1607,6 +1611,18 @@ function testAjax(){
         });
     }
 
+    function tourBTNCancel(elem){
+        $('#uTour-8').slideUp(500, function() {
+            $.post('/ajax.php', {type:'tour', mod:'tourCancelResult'}, function(){
+                eventSource.close();
+                userTourStatus();    
+            });
+        });
+    }
+
+
+
+
     /***********************
                        Tour Bracket page
                                ***********************/
@@ -1630,10 +1646,59 @@ function testAjax(){
         }
     }
 
+
+
+
+    
+
+
+
     /***********************
                        PAGE READY!
                                 ***********************/
     $( document ).ready(function() {
+        
+        
+    //------> TWITCH LIVE
+        
+        if(!document.getElementById('obj-twitch-live')){
+            return false;
+        }
+        // ajax -> get live stream (add from admin)
+        $.post('/ajax.php', {type:'tour', mod:'tourMainStream'}, function(streamName){
+            streamName = "rrreyn"; // delete it
+            var twitch_embed_player_width = $('#obj-twitch-live').width() - 10;
+            var twitch_embed_player_height = twitch_embed_player_width / 1.55;
+            $(function () {
+                window.onPlayerEvent = function (data){
+                  data.forEach(function(event) {
+                    if (event.event == "playerInit") {
+                      var player = $("#twitch_embed_player")[0];
+                      player.loadStream();
+                    }
+                  });
+                }
+                swfobject.embedSWF("//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf", "twitch_embed_player", ""+twitch_embed_player_width+"", ""+twitch_embed_player_height+"", "11", null,
+                  { "eventsCallback":"onPlayerEvent",
+                    "embed":1,
+                    "channel":streamName,
+                    "auto_play":"true"},
+                  { "allowScriptAccess":"always",
+                    "allowFullScreen":"true"});
+            });
+        });
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     //------> VK Widget
         

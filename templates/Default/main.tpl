@@ -5,6 +5,15 @@
         </div>
         <div class="col-xs-6 col-md-4">
            
+            <!-- Live Stream -->
+            <div id="obj-twitch-live">
+                <div class="title-header"><h5>Основной стрим турнира</h5><hr></div>
+                <div class="block">
+                   <div id="twitch_embed_player"></div>
+                </div>
+            </div>
+           
+           
             <!-- Streamer's -->
             <div id="obj-twitch">
                 <div class="title-header" id="stream-block-head"><h5>Стример's</h5><hr></div>
