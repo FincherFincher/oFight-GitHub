@@ -1646,7 +1646,10 @@ function testAjax(){
         }
     }
 
-
+    function brackets_profile(elem){
+        var name = $(elem).html();
+        window.open('/user/profile/'+name ,'_blank');
+    }
 
 
     
@@ -1788,6 +1791,7 @@ function testAjax(){
         }
         
         if(location.pathname.split("/")[1] == 'bracket'){ 
+            
             var minimalData = (function() {
                 var type = 'tour';
                 var mod = 'getBracket';
