@@ -1622,17 +1622,18 @@
                         array_push($arrWinnerBracket, $pairs);
                         unset($pairs);
                     }else{
-                        $sql = " SELECT r".$i."score FROM oF_tour_table_".$tData['id']." ".$this->sSQL($i)." ";
-                        $selectResults = $this->db->query($sql)->fetchAll(PDO::FETCH_COLUMN);
+                        $sql = " SELECT r".$i.", r".$i."score FROM oF_tour_table_".$tData['id']." WHERE r".($i - 1)."finalrez = 'W' ";
+                        $selectResults = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+                        
+                        $selectResults = $this->makeTableForBrackets($i, $selectResults, $tData['tourrounds']);
+                        
                         $pairs = $this->resPrepare($selectResults);
                         array_push($arrWinnerBracket, $pairs);
                         unset($pairs); 
                     }
 
                 }
-                
-                print_r($arrWinnerBracket);
-                
+
                 
         //------> Finals / Semi - Finals
 
@@ -1656,38 +1657,27 @@
         }
         
         
-        function bracketMakeRound($data, $pCount, $i)
+        function makeTableForBrackets($round, $data, $mRound)
         {
-            $pair_Default = $pCount / pow(2, ($i -1)) / 2;
-            
-            
-            
-            
-            $tmp = array();
-            foreach($data as $key => $val)
+            $arrResult = array();
+            for($i = 1; $i <= pow(2, ($mRound - $round + 1)); $i++)
             {
-                $tmp[] = $val['r'.$i];
-            }
-            $tmp = array_count_values($tmp);
-            //print_r($pair_Default);
-            print_r($tmp);
-            
-            for($j = 1; $j <= $pair_Default; $j++)
-            {
-
-                    echo $tmp[$j];
-                
-            }
-            
-            
-            
-
-
-            
-            
-            
-            //print_r(array_count_values($tmp));
+                foreach($data as $key => $val)
+                { 
+                    if($val['r'.$round] == $i)
+                    { 
+                        $arrResult[] = $val['r'.$round.'score'];
+                        unset($data[$key]);
+                    }
+                }
+                if(empty($arrResult[$i]))
+                {
+                    $arrResult[$i] = 0;
+                }
+            } 
+            return $arrResult;
         }
+        
         
         function cleanArray($array)
         {

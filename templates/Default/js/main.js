@@ -1660,7 +1660,7 @@ function testAjax(){
         
         
     //------> TWITCH LIVE
-        
+     /*   
         if(!document.getElementById('obj-twitch-live')){
             return false;
         }
@@ -1688,7 +1688,7 @@ function testAjax(){
             });
         });
 
-
+*/
         
         
         
