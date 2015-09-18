@@ -1617,12 +1617,15 @@
                 for($i = 1; $i < $maxRound; $i++){
 
                     if($i == 1){
-                        $selectResults = $this->db->query(" SELECT ".'r'.$i.'score'." FROM ".'oF_tour_table_'.$tData['id']." ORDER BY r1 ASC ")->fetchAll(PDO::FETCH_COLUMN);
+                        $selectResults = $this->db->query(" SELECT ".'r'.$i.'score'." FROM ".'oF_tour_table_'.$tData['id']." ORDER BY r0 ASC ")->fetchAll(PDO::FETCH_COLUMN);
+                        
+                        // $selectResults = $this->makeTableForBrackets(0, $selectResults, $tData['tourrounds']);
+                        
                         $pairs = $this->resPrepare($selectResults);
                         array_push($arrWinnerBracket, $pairs);
                         unset($pairs);
                     }else{
-                        $sql = " SELECT r".$i.", r".$i."score FROM oF_tour_table_".$tData['id']." WHERE r".($i - 1)."finalrez = 'W' ";
+                        $sql = " SELECT r".$i.", r".$i."score FROM oF_tour_table_".$tData['id']." WHERE r".($i - 1)."finalrez = 'W' ORDER BY r0 ASC ";
                         $selectResults = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                         
                         $selectResults = $this->makeTableForBrackets($i, $selectResults, $tData['tourrounds']);
@@ -1660,21 +1663,36 @@
         function makeTableForBrackets($round, $data, $mRound)
         {
             $arrResult = array();
-            for($i = 1; $i <= pow(2, ($mRound - $round + 1)); $i++)
-            {
+            $c = 1;
+            $pair = 1;
+            lebel_makeTableForBrackets:
+            
+                $true = false;
                 foreach($data as $key => $val)
-                { 
-                    if($val['r'.$round] == $i)
-                    { 
-                        $arrResult[] = $val['r'.$round.'score'];
-                        unset($data[$key]);
-                    }
-                }
-                if(empty($arrResult[$i]))
                 {
-                    $arrResult[$i] = 0;
+                    if($val['r'.$round] == $pair)
+                    { 
+                        array_push($arrResult, $val['r'.$round.'score']);
+                        unset($data[$key]);
+                        $true = true;
+                        break;
+                    } 
+                }   
+                if($true !== true)
+                {
+                        array_push($arrResult, 0);
                 }
-            } 
+            
+            if($c % 2 == 0)
+            {
+                $pair++;
+            }
+            $c++;
+            
+            if($c <= pow(2, ($mRound - $round + 1)))
+            {
+                goto lebel_makeTableForBrackets;
+            }
             return $arrResult;
         }
         
