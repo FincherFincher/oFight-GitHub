@@ -545,21 +545,9 @@
                                 ***********************/
         function tourAccDuel($uName, $tData, $tUser)
         {
-            if($tData['tourmod'] == 'Spartan')
-            {
-                if(empty($tUser['MoveTo_SE']))
-                {
-                    $query = $this->db->prepare(" UPDATE ".'oF_tour_brackettable_'.$tData['id']." SET tConfirm = 'yes' WHERE username = '".$uName."' ")->execute(); 
-                    return true;
-                } 
-                
-                if(!empty($tUser['MoveTo_SE']))
-                {
-                    $query = $this->db->prepare(" UPDATE ".'oF_tour_table_'.$tData['id']." SET tConfirm = 'yes' WHERE username = '".$uName."' ")->execute();
-                    return true;
-                }
-            }
-            $query = $this->db->prepare(" UPDATE ".'oF_tour_table_'.$tData['id']." SET tConfirm = 'yes' WHERE username = '".$uName."' ")->execute(); 
+            $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." SET tConfirm = 'yes' WHERE username = '".$uName."'; 
+                     UPDATE ".'oF_tour_brackettable_'.$tData['id']." SET tConfirm = 'yes' WHERE username = '".$uName."' ";
+            $this->db->prepare($sql)->execute(); 
         }
             
             

@@ -816,7 +816,7 @@ background: rgba(236, 240, 241, 0.51);
 .unit-toptour-v1{
     width: 100%;
     display: table;
-    margin-bottom: 9px;
+    margin-bottom: 10px;
 }
 .unit-toptour-v1 > div{
     height: 40px;
@@ -1210,6 +1210,7 @@ background: rgba(236, 240, 241, 0.51);
 .system-msg-red{
     border-left: 1px solid #c0392b;
     background-color: rgba(231, 76, 60, 0.12);
+    height: 40px;
 }
 #tBlock-data-faq{
     height: 40px;
@@ -1217,10 +1218,12 @@ background: rgba(236, 240, 241, 0.51);
 .system-msg-white{
     background: rgba(255, 255, 255, 0.67);
     border-left: 1px solid #1abc9c;
+    height: 40px;
 }
 .system-msg-yellow{
     background-color: #fefae9;
     border-left: 1px solid rgba(243, 156, 18, 0.87);
+    height: 40px;
 }
 .tBlock-data-bold{
     font-weight: bold;

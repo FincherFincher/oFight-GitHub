@@ -1564,18 +1564,10 @@ function testAjax(){
                                 ***********************/
 
     function accDuel(elem){
-        $(elem).parent().parent().slideUp(800, function() {
-            var type = 'tour';
-            var mod = 'accDuel';
-            $.ajax({
-                type: "POST", 
-                url: "/ajax.php",
-                data:{type:type, mod:mod},
-                success: function(uStatus){
-                    pagerefresh();
-                },
-            }); 
-        });   
+        $.post('/ajax.php', {type:'tour', mod:'accDuel'}, function(){
+            $("#tBlock-data-confirm").hide();
+            userTourStatus();
+        }); 
     }
 
 
