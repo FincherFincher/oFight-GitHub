@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-6 col-md-4 hidden-xs hidden-sm">
+           
             <!-- Streamers -->
             <div id="obj-twitch">
                 <div class="title-header" id="stream-block-head"><h5>Стример's</h5><hr></div>
@@ -15,6 +16,15 @@
 
         </div>
         <div class="col-xs-6 col-md-5">
+
+            <!-- Live Stream -->
+            <div id="obj-twitch-live">
+                <div class="title-header"><h5>Основной стрим турнира</h5><hr></div>
+                <div class="block">
+                   <div id="twitch_embed_player"></div>
+                </div>
+            </div>
+           
             <!-- Chat message -->
             <div class="title-header"><h5>Чат</h5><hr></div>
             <div class="block chat-box">

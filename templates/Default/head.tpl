@@ -19,6 +19,9 @@
     <meta name="description" content="{DESCRIPTION}">
     <meta name="keywords" content="{KEYWORDS}">
 
+  
+    <!-- twitch -->
+    <script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
    
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>

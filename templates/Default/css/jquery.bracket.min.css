@@ -182,7 +182,9 @@ body {
 .tourBracket-link:active{ 
     color: #1abc9c;
 }
-
+.label{
+    cursor: pointer;
+}
 
 
 /* jQuery Bracket | Copyright (c) Teijo Laine 2011-2013 | Licenced under the MIT licence */
