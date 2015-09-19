@@ -30,11 +30,13 @@
         var arg3 = $(elem).parent().find('#arg3').val();
         
         answer.slideUp(350, function(){
+            
         //------> check VK + Btag
             if(VK == '' || Btag == ''){
                 answer.html(error[3]).slideDown(600);
                 return false;
             }
+            
             if(VK.indexOf('vk.com/') >= 0){
                 $('#argVK').val(VK.split('vk.com/')[1]);
             }  
@@ -42,6 +44,17 @@
                 answer.html(error[2]).slideDown(600);
                 return false;
             }
+            
+            if(VK == '' || Btag == '' || arg1 == null || arg2 == null || arg3 == null){
+                answer.html(error[3]).slideDown(600);
+                return false;   
+            }
+            
+            if(arg1 == arg2 || arg1 == arg3 || arg2 == arg3){
+                answer.html(error[4]).slideDown(600);
+                return false;   
+            }
+            
             $.post('/ajax.php', {type:'tour', mod:'tourInfoByID', id:id}, function(data){
                 tData = JSON.parse(data);
                 //------> random Race HS
@@ -57,11 +70,11 @@
                 }
 
                 $.post('/ajax.php', {type:'tour', mod:'tourReg', id:id, VK:VK, Btag:Btag, arg1:arg1, arg2:arg2, arg3:arg3}, function(data){
-                        if(data == 0){
-                            answer.removeClass().addClass("dialog dialog-success").html(error[0]).slideDown(350);  
-                        }else{
-                            answer.removeClass().addClass("dialog dialog-danger").html(error[data]).slideDown(350);  
-                        }
+                    if(data == 0){
+                        answer.removeClass().addClass("dialog dialog-success").html(error[0]).slideDown(350);  
+                    }else{
+                        answer.removeClass().addClass("dialog dialog-danger").html(error[data]).slideDown(350);  
+                    }
                 });
             });  
         });  
@@ -1462,7 +1475,7 @@ function testAjax(){
                             $('#tBlock-data-name').html(uStatus.tourData.tourname);
                             $('#tBlock-data-round').html('Раунд '+uStatus.tourRound);   
                             $('#tBlock-data-bracket').attr('href', '/bracket/'+uStatus.tourData.id);
-                            $('#tBlock-data-rule').attr('href', '/uploads/rules/'+uStatus.tourData.tourgame+'/'+uStatus.tourData.tourrules+'.pdf');
+                            $('#tBlock-data-rule').attr('href', decodeURIComponent(uStatus.tourData.tourrules));
                             $('#tBlock-data-en-name').html(uStatus.tourEnemy.username);
                             $('#tBlock-data-en-avatar').attr('src', '/uploads/avatars/'+uStatus.tourEnemyData.avatar);
                             $('#tBlock-data-en-btag').html('Battle Tag: '+uStatus.tourEnemyData.bnettag);
@@ -1652,7 +1665,55 @@ function testAjax(){
     }
 
 
-    
+    /***********************
+                        Main Streamer
+                                ***********************/
+
+    function twitch_set_main_stream(elem){
+        var error = new Array( 'Стример установлен', 'Канал не существует' );
+        var answer = $(elem).parent().find('.dialog');
+        var streamer = $(elem).parent().find('input').val();
+
+        answer.slideUp(350, function(){
+            $.getJSON("https://api.twitch.tv/kraken/channels/"+ streamer +".json?callback=?", function(response){
+                response = JSON.stringify(response);
+                response = jQuery.parseJSON(response);
+                if(response._id > 0){
+                    $.post('/ajax.php', {type:'tour', mod:'setTourMainStream', streamer:streamer}, function(){
+                        answer.removeClass().addClass("dialog dialog-success").html(error[0]).slideDown(350, function(){
+                            setTimeout('pagerefresh()', 1000);
+                        });
+                    });      
+                }else{
+                    answer.removeClass().addClass("dialog dialog-danger").html(error[1]).slideDown(350); 
+                }
+            });	 
+        }); 
+    }
+
+    function twitch_del_main_stream(elem){
+        if($(elem).attr("class") == "unit-btn-green pointer"){
+            $(elem).animate({width:'hide'},450, function(){
+                $(elem).removeClass().addClass("unit-btn-red pointer");
+                $(elem).prev().css("color", "#ea6153");
+                $(elem).animate({width:'show'},450);
+            });  
+        }else{
+            $(elem).parent().slideUp(450, function(){  
+                var error = new Array( 'Основной стрим закрыт' );
+                var answer = $(elem).parent().parent().parent().find('.dialog');
+                $.post('/ajax.php', {type:'tour', mod:'delTourMainStream'}, function(){
+                    answer.removeClass().addClass("dialog dialog-success").html(error[0]).slideDown(350, function(){
+                        setTimeout('pagerefresh()', 1000);
+                    });
+                }); 
+            });  
+        } 
+    }
+
+
+
+
 
 
 
@@ -1660,20 +1721,27 @@ function testAjax(){
                        PAGE READY!
                                 ***********************/
     $( document ).ready(function() {
-        
-        
     //------> TWITCH LIVE
     
-        function twitch_main_stream(){
+        function twitch_get_main_stream(){
             if(!document.getElementById('obj-twitch-live')){
                 return false;
             }
             // ajax -> get live stream (add from admin)
-           // $.post('/ajax.php', {type:'tour', mod:'tourMainStream'}, function(streamName){
-                streamName = "captain_lucker"; // delete it
+            $.post('/ajax.php', {type:'tour', mod:'getTourMainStream'}, function(streamName){
+                
+                if(!streamName){
+                    $('#obj-twitch-live').remove();
+                    return false;   
+                } else {
+                    $('#obj-twitch-live').append('<div class="title-header"><h5>Основной стрим</h5><hr></div><div class="block"><div id="twitch_embed_player"></div></div>'); 
+                    if(document.getElementById('chat-message')){
+                        $('#chat-message').height('500');
+                    }
+                }
+                //streamName = "turntheslayer"; // delete it
                 var twitch_embed_player_width = $('#obj-twitch-live').width() - 10;
                 var twitch_embed_player_height = twitch_embed_player_width / 1.55;
-
                 $(function () {
                     window.onPlayerEvent = function (data){
                       data.forEach(function(event) {
@@ -1691,9 +1759,9 @@ function testAjax(){
                       { "allowScriptAccess":"always",
                         "allowFullScreen":"true"});
                 });
-         //   });  
+            });  
         }
-        twitch_main_stream();
+        twitch_get_main_stream();
         
 
 

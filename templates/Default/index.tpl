@@ -57,18 +57,7 @@
          <div class="col-xs-12 col-sm-12 col-md-4">&nbsp;</div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 hidden-sm hidden-xs">
-<!--
-                 <div class="block">
 
-                    <div class="table tourney-div" onclick="window.open('/tour-create' ,'_self');">
-                        <div class="cell tstatus-new">NEW</div>
-                        <div class="cell pointer">
-                        <span>Создай свой турнир</span>
-                        <span>Пользовательские турниры</span>
-                        </div>
-                    </div>
-
-                  </div>-->
           </div>
         </div>
     </div>
@@ -92,7 +81,7 @@
 					<li><a href="/vacancy">Вакансии<!--<span class="navbar-new nav-menu-status">N!</span>--></a></li>
 					<li><a href="/page-all-tournaments">Турниры</a></li>
 					<li><a href="/page-ranking">Рейтинг</a></li>
-					<li><a href="/upcup">Серия UPCUP<span class="navbar-new navbar-new-custom">&nbsp;new&nbsp;</span></a></li>
+					<li><a href="/upcup">UPCUP<span class="navbar-new navbar-new-custom">&nbsp;new&nbsp;</span></a></li>
 					
 					<!--
 					<li class="dropdown">

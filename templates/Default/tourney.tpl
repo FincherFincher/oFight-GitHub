@@ -69,6 +69,10 @@
 
         <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="block unit hidden-xs hidden-sm">
+               
+                <!-- Live Stream -->
+                <div id="obj-twitch-live" class="hidden-xs"></div>
+               
                 <div>
                     <div class="unit-v1">
                         <span class="fa fa-weixin fa-fw"></span>

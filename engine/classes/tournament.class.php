@@ -1818,18 +1818,26 @@
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+                    
+    /***********************
+                  Основной стрим турнира
+                                ***********************/
+                    
+        function getTourMainStream()
+        {
+            return $this->db->query(" SELECT mainstream FROM oF_stream_main ")->fetchAll(PDO::FETCH_COLUMN);  
+        }
+        function setTourMainStream($streamer)
+        {
+            $query = $this->db->prepare(" UPDATE oF_stream_main SET mainstream = ? WHERE game = 'Hearthstone' ");
+            $query->execute(array($streamer)); 
+        }
+        function delTourMainStream()
+        {
+            $this->db->query(" UPDATE oF_stream_main SET mainstream = '' WHERE game = 'Hearthstone' ");
+        }
+            
+
         
     /***********************
           Вывод зарегистрированных

@@ -60,8 +60,8 @@
                 <div class="form-group" id="tadmin">
                     <select class="form-control" id="trule">
                     <option selected="selected" value="{RULES}">{RULES}</option> 
-                    <option value="Regular-mainBO2-finalBO3">Regular games BO2, final`s BO3</option> 
-                    <option value="Random-mainBO2-finalBO3">Random games BO2, final`s BO3</option> 
+                    <option value="Regular-mainBO2-finalBO3">Regular games BO3, final`s BO5</option> 
+                    <!--<option value="Random-mainBO2-finalBO3">Random games BO2, final`s BO3</option>-->
                     </select>
                 </div>
                 <input name="tagsinput" class="tagsinput" value="{ADMIN}" />

@@ -225,7 +225,7 @@
 
 
     /***********************
-                      Create tourney
+                     Moderate twtich streams
                                 ***********************/
     if($this->url_path[1] == 'Admin'){
         $this->mainTitle = 'Турниры на oFight';
@@ -256,10 +256,21 @@
         $tpl->compile('USERBLOCK1');
         $tpl->clear();
         
+        $tpl->load_template('user-admin-mainstream.tpl');
+        $streamer = $tour->getTourMainStream()[0];
+        if(!empty($streamer)){
+            $tpl->set('{MAINSTREM}', $streamer); 
+        } else {
+            $tpl->set('{MAINSTREM}', 'Основой стрим выключен'); 
+        }
+        $tpl->compile('USERBLOCK2');
+        $tpl->clear();
+            
+        
         
         $tpl->load_template('user.tpl');
         $tpl->set('{USERBLOCK1}', $tpl->result['USERBLOCK1']);
-        $tpl->set('{USERBLOCK2}', '');        
+        $tpl->set('{USERBLOCK2}', $tpl->result['USERBLOCK2']); 
         $tpl->set('{USERBLOCK3}', '');            
         $tpl->set('{USERBLOCK4}', '');
     }
@@ -367,7 +378,7 @@
                     $tpl->copy_template = str_ireplace("{MOD}", $tData['tourmod'], $tpl->copy_template);
                     $tpl->copy_template = str_ireplace("{TYPE}", $tData['tourtype'], $tpl->copy_template); 
                     $tpl->copy_template = str_ireplace("{DATE}", date('d.m.Y H:i', strtotime($tData['tourdate'])), $tpl->copy_template);
-                    $tpl->copy_template = str_ireplace("{RULES}", $tData['tourrules'], $tpl->copy_template);
+                    $tpl->copy_template = str_ireplace("{RULES}", urldecode($tData['tourrules']), $tpl->copy_template);
                     $tpl->copy_template = str_ireplace("{MIDBLOCK}", $tData['tourtext'], $tpl->copy_template);
                     $tpl->copy_template = str_ireplace("{RIGHTBLOCK}", $tData['tourtext2'], $tpl->copy_template);
                     $tpl->copy_template = str_ireplace("{ADMIN}", $tData['touradmin'], $tpl->copy_template);
@@ -382,7 +393,7 @@
                     $tpl->copy_template = str_ireplace("{MOD}", $tData['tourmod'], $tpl->copy_template);
                     $tpl->copy_template = str_ireplace("{TYPE}", $tData['tourtype'], $tpl->copy_template); 
                     $tpl->copy_template = str_ireplace("{DATE}", date('d.m.Y H:i', strtotime($tData['tourdate'])), $tpl->copy_template);
-                    $tpl->copy_template = str_ireplace("{RULES}", $tData['tourrules'], $tpl->copy_template);
+                    $tpl->copy_template = str_ireplace("{RULES}", urldecode($tData['tourrules']), $tpl->copy_template);
                     $tpl->copy_template = str_ireplace("{MIDBLOCK}", $tData['tourtext'], $tpl->copy_template);
                     $tpl->copy_template = str_ireplace("{RIGHTBLOCK}", $tData['tourtext2'], $tpl->copy_template);
                     $tpl->copy_template = str_ireplace("{ADMIN}", $tData['touradmin'], $tpl->copy_template);

@@ -1,4 +1,4 @@
-<div class="container">
+ <div class="container">
     <div class="row">
         <div class="col-xs-6 col-md-4 hidden-xs hidden-sm">
            
@@ -16,15 +16,10 @@
 
         </div>
         <div class="col-xs-6 col-md-5">
-
-            <!-- Live Stream -->
-            <div id="obj-twitch-live">
-                <div class="title-header"><h5>Основной стрим турнира</h5><hr></div>
-                <div class="block">
-                   <div id="twitch_embed_player"></div>
-                </div>
-            </div>
            
+            <!-- Live Stream -->
+            <div id="obj-twitch-live" class="hidden-xs"></div>
+            
             <!-- Chat message -->
             <div class="title-header"><h5>Чат</h5><hr></div>
             <div class="block chat-box">
@@ -43,7 +38,7 @@
                             <td><img src="/uploads/sys/avatar_system.jpg" alt="Набор в проект игрового портала" class="img-circle"></td>
                             <td>
                                 <span class="user-login">Сообщение администрации</span>
-                                <p>Мы продолжаем набор в команду нашего сайта. Сейчас ищем: программистов, дизайнеров, администраторов и конечно же ньюс-мейкеров для группы и сайта. Есть жалание поучаствовать? напишите об этом <a href="/vacancy">в специальном разделе</a>.</p>
+                                <p>Проводим набор в команду сайта <a href="/vacancy">в специальном разделе</a></p>
                             </td>
                         </tr>
                     </table>
@@ -66,19 +61,27 @@
             </div>
             
             <div class="title-header"><h5>Аналитика карт</h5><hr></div>
+            
+            <div class="obj-widget-card">
+                <div class="img-link">
+                    <a href="/news/analitika-legendarnyh-kart-varian-rinn" class="overlay"><div><div><span class="fui-link"></span></div></div></a>
+                    <img src="http://ofight.ru/uploads/974a2f21489ea379b3df647979c5192f.jpg" class="img-responsive" alt="">
+                </div>
+            </div>
             <div class="obj-widget-card">
                 <div class="img-link">
                     <a href="/news/stoit-li-sozdavat-kartu-mariehl-chistoserdechnaya" class="overlay"><div><div><span class="fui-link"></span></div></div></a>
                     <img src="http://ofight.ru/uploads/97b59e4b468b6c433a5e2916d2622b95.jpg" class="img-responsive" alt="">
                 </div>
             </div>
+            <!-- 
             <div class="obj-widget-card">
                 <div class="img-link">
                     <a href="/news/analitika-karty-silvana-opisanie-razlichnyh-klassov" class="overlay"><div><div><span class="fui-link"></span></div></div></a>
                     <img src="http://ofight.ru/uploads/5a045de98b128ca4d9e102a35b2702a8.jpg" class="img-responsive" alt="">
                 </div>
             </div>
-           
+            --> 
             <!-- VK Widget
             <div class="hidden-xs">
                 <div class="title-header"><h5>Вконтакте</h5><hr></div>

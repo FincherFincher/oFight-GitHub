@@ -772,6 +772,7 @@ background: rgba(236, 240, 241, 0.51);
     font-size: 13px;
 }
 .unit-btn-red{
+    background: #e74c3c !important;
     border-right: 1px solid white;
 }
 .unit-btn-red:hover{
@@ -815,6 +816,7 @@ background: rgba(236, 240, 241, 0.51);
 .unit-toptour-v1{
     width: 100%;
     display: table;
+    margin-bottom: 9px;
 }
 .unit-toptour-v1 > div{
     height: 40px;
@@ -831,6 +833,7 @@ background: rgba(236, 240, 241, 0.51);
     font-size: 17px;
     color: #2f4255;
     text-indent: 7px;
+    background-color: #ffffff;
 }
 .unit-toptour-v2{
     width: 100%;
@@ -922,7 +925,9 @@ background: rgba(236, 240, 241, 0.51);
 #tBlock-data-confirm{
     display: none;
 }
-
+#tBlock-data-bracket{
+    border-right: 1px solid white;
+}
 
 #uTour-2,
 #uTour-3,

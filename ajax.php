@@ -207,10 +207,27 @@
                     break;
         
                 
-                
-                
-                
-                
+                    
+                    
+    /***********************
+                  Основной стрим турнира
+                                ***********************/
+                    
+                case 'setTourMainStream':
+                    $streamer = $_POST['streamer'];
+                    echo $tour->setTourMainStream($streamer);
+                    break;
+                    
+                case 'getTourMainStream':
+                    echo $tour->getTourMainStream()[0];
+                    break;
+                    
+                case 'delTourMainStream':
+                    $tour->delTourMainStream();
+                    break;
+                    
+                    
+                    
                 
     /***********************
                   Запуск турнира
@@ -283,7 +300,7 @@
                     $arg3 = $_POST['arg3'];
                     $VK = $_POST['VK'];
                     $Btag = $_POST['Btag'];
-                    
+
                     if(empty($uName))
                     {
                         echo '1'; break;
@@ -292,14 +309,7 @@
                     $tData = $tour->getTourinfo($id);
                     if($tData['tourgame'] == 'Hearthstone')
                     {
-                        if(empty($arg1) || empty($arg2) || empty($arg3) || empty($VK) || empty($Btag))
-                        {
-                            echo '3'; break;  
-                        } 
-                        if($arg1 == $arg2 || $arg1 == $arg3 || $arg2 == $arg3)
-                        {
-                            echo '4'; break;  
-                        }
+                    
                     }
 
                     if(!empty($tData['tourtechstart']))

@@ -1,18 +1,13 @@
 <div class="container">
     <div class="row">
     <div class="col-xs-12 col-md-8">
+           
+            <!-- Live Stream -->
+            <div id="obj-twitch-live" class="hidden-xs"></div>
+           
             {NEWS}
         </div>
         <div class="col-xs-6 col-md-4">
-           
-            <!-- Live Stream -->
-            <div id="obj-twitch-live">
-                <div class="title-header"><h5>Основной стрим турнира</h5><hr></div>
-                <div class="block">
-                   <div id="twitch_embed_player"></div>
-                </div>
-            </div>
-           
            
             <!-- Streamer's -->
             <div id="obj-twitch">
