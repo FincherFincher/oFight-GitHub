@@ -135,8 +135,9 @@
                 {
                     $sql = " UPDATE ".'oF_tour_brackettable_'.$tData['id']." 
                              SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', points = -9 
-                             WHERE username = '".$uName."'; 
-                             DELETE FROM oF_tour_users WHERE username = '".$uName."' and tourid = '".$tData['id']."' ";
+                             WHERE username = '".$uName."' ";
+                    $query = $this->db->query($sql);
+                    $sql = " DELETE FROM oF_tour_users WHERE username = '".$uName."' and tourid = '".$tData['id']."' ";
                     $query = $this->db->query($sql);
                 }
                 $query = $this->db->query(" UPDATE oF_tour_cPanel SET tourtechdef = 'yes' WHERE id = '".$tData['id']."' ");   
@@ -153,17 +154,17 @@
                 {
                     $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." 
                              SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', r4rez = 'D', r4finalrez  = 'D', r5rez = 'D', r5finalrez  = 'D', r6rez = 'D', r6finalrez  = 'D', r7rez = 'D', r7finalrez  = 'D', r8rez = 'D', r8finalrez  = 'D', r9rez = 'D', r9finalrez  = 'D', r10rez = 'D', r10finalrez  = 'D' 
-                             WHERE username = '".$uName."';
-                             DELETE FROM oF_tour_users WHERE username = '".$uName."' and tourid = '".$tData['id']."' ";
+                             WHERE username = '".$uName."' ";
+                    $query = $this->db->query($sql);
+                    $sql = " DELETE FROM oF_tour_users WHERE username = '".$uName."' and tourid = '".$tData['id']."' ";
                     $query = $this->db->query($sql);
                 }
-                $query = $this->db->query(" UPDATE oF_tour_cPanel SET tourtechdef = 'yes' WHERE id = '".$tData['id']."' ");    
+                $query = $this->db->query(" UPDATE oF_tour_cPanel SET tourtechdef = 'yes' WHERE id = '".$tData['id']."' ");
             }
         }
         
-        
-        
-        
+
+                            
         
         
   
@@ -1777,7 +1778,6 @@
             $query = $this->db->query(" SELECT id FROM oF_tour_cPanel WHERE tourdate < NOW() - 800 AND tourtechdef = '' ");
             return $query->fetchAll(PDO::FETCH_COLUMN); 
         }
-
         
         function cronEndTour()
         {
