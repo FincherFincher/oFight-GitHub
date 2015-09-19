@@ -1663,35 +1663,41 @@ function testAjax(){
         
         
     //------> TWITCH LIVE
-     /*   
-        if(!document.getElementById('obj-twitch-live')){
-            return false;
-        }
-        // ajax -> get live stream (add from admin)
-        $.post('/ajax.php', {type:'tour', mod:'tourMainStream'}, function(streamName){
-            streamName = "rrreyn"; // delete it
-            var twitch_embed_player_width = $('#obj-twitch-live').width() - 10;
-            var twitch_embed_player_height = twitch_embed_player_width / 1.55;
-            $(function () {
-                window.onPlayerEvent = function (data){
-                  data.forEach(function(event) {
-                    if (event.event == "playerInit") {
-                      var player = $("#twitch_embed_player")[0];
-                      player.loadStream();
-                    }
-                  });
-                }
-                swfobject.embedSWF("//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf", "twitch_embed_player", ""+twitch_embed_player_width+"", ""+twitch_embed_player_height+"", "11", null,
-                  { "eventsCallback":"onPlayerEvent",
-                    "embed":1,
-                    "channel":streamName,
-                    "auto_play":"true"},
-                  { "allowScriptAccess":"always",
-                    "allowFullScreen":"true"});
-            });
-        });
+    
+        function twitch_main_stream(){
+            if(!document.getElementById('obj-twitch-live')){
+                return false;
+            }
+            // ajax -> get live stream (add from admin)
+           // $.post('/ajax.php', {type:'tour', mod:'tourMainStream'}, function(streamName){
+                streamName = "captain_lucker"; // delete it
+                var twitch_embed_player_width = $('#obj-twitch-live').width() - 10;
+                var twitch_embed_player_height = twitch_embed_player_width / 1.55;
 
-*/
+                $(function () {
+                    window.onPlayerEvent = function (data){
+                      data.forEach(function(event) {
+                        if (event.event == "playerInit") {
+                          var player = $("#twitch_embed_player")[0];
+                          player.playVideo();
+                        }
+                      });
+                    }
+                    swfobject.embedSWF("//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf", "twitch_embed_player", twitch_embed_player_width, twitch_embed_player_height, "11", null,
+                      { "eventsCallback":"onPlayerEvent",
+                        "embed":1,
+                        "channel":streamName,
+                        "auto_play":"true"},
+                      { "allowScriptAccess":"always",
+                        "allowFullScreen":"true"});
+                });
+         //   });  
+        }
+        twitch_main_stream();
+        
+
+
+
         
         
         
