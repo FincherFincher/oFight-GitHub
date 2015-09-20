@@ -577,6 +577,9 @@
                         if($tUserStatus == 'ReloadFreeSlot')
                         {
                             $New_round = $round + 1;
+                            if($tData['tourmod'] == 'Spartan'){
+                                $New_round = min($New_round, 3);
+                            }
                             $New_tEnemy = $tour->tourEnemy($tData, $tUser, $New_round);
                             $SHM = new Block($tData['id']);
                             $obj = json_decode($SHM->read(), true);

@@ -1174,7 +1174,8 @@
                                                       UPDATE oFight_users_HS SET defeatcount = defeatcount + 1 WHERE username = '".$tEnemy['username']."' ")->execute();
 
                     //------> Если фри слот предыдущий, то смотрим $round - 2
-                    
+                    /*
+                        
                         $sql = " SELECT username FROM ".'oF_tour_brackettable_'.$tData['id']." 
                                  WHERE r2 = '".$tUser['r2']."' AND ".'Back_r'.($round - 1)." = '".$tUser['Back_r'.($round - 1)]."' AND username = 'Free Slot' ";
                         $query = $this->db->query($sql)->fetchAll(PDO::FETCH_COLUMN);
@@ -1184,13 +1185,12 @@
                         } else {
                             $winRate = $round - 1;   
                         }  
-
                         
                         if( $tUser['r'.$winRate.'rez'] == 'W' && $round > 1)
                         {
                             $query = $this->db->query(" UPDATE ".'oF_tour_brackettable_'.$tData['id']." SET points = points + 1 WHERE username = '".$uName."' "); 
                         }   
-                        
+                        */
                     }
                     
                     if($tUser['r'.$round.'rez'] == 'D' && $tEnemy['r'.$round.'rez'] == 'W')
