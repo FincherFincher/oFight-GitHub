@@ -1,6 +1,6 @@
 <a href="tourney/{TOURNEYID}">
     <div class="block table tourney-div tournament-clear-block"> 
-        <div class="cell"><img src="http://ofight.ru/uploads/dfa7c6018774b0895679f2658d83b365.jpg" class="img-responsive" alt="Hearthstone турнир {TOURNEYNAME}"></div>
+        <div class="cell"><img src="{TOURNEYLOGO}" class="img-responsive" alt="Hearthstone турнир {TOURNEYNAME}"></div>
         <div class="cell pointer">
             <span class="obj-winners-text-2">{TOURNEYNAME}</span>
             <span class="obj-winners-text-1">Дата: {TOURNEYDATE}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Призовые: {TOURNEYPRIZE}</span>
