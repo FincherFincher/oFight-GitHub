@@ -305,13 +305,29 @@
                     {
                         echo '1'; break;
                     }
-                    
-                    $tData = $tour->getTourinfo($id);
-                    if($tData['tourgame'] == 'Hearthstone')
-                    {
-                    
-                    }
 
+                    $tData = $tour->getTourinfo($id);
+                    if($tData['tourgame'] == 'Hearthstone' && $tData['tourtype'] == 'Regular')
+                    {
+                        if(empty($arg1) || empty($arg2) || empty($arg3))
+                        {
+                            echo '3'; break;
+                        }
+                        if($arg1 == $arg2 || $arg1 == $arg3 ||$arg2 == $arg3)
+                        {
+                            echo '4'; break;
+                        }
+                    }
+                    
+                    if($tData['tourgame'] == 'Hearthstone' && $tData['tourtype'] == 'Random')
+                    {
+                        $r_Race = Array("Hunter", "Paladin", "Warrior", "Shaman", "Priest", "Druid", "Warlock", "Rogue");
+                        while($i <= 3){
+                            $rnd = array_rand($r_Race, 1);
+                            ${'arg'.$i} = $r_Race[$rnd];
+                            unset($r_Race[$rnd]); $i++;
+                        }
+                    }
                     if(!empty($tData['tourtechstart']))
                     {
                         echo '5'; break; 
@@ -321,7 +337,7 @@
                     $user->userAttr($uName, $attrName, $VK);
                     $attrName = 'bnettag';
                     $user->userAttr($uName, $attrName, $Btag);
-                    
+ 
                     echo $tour->tourRegNormal($uName, $tData, $arg1, $arg2, $arg3);
                     
                     break;   

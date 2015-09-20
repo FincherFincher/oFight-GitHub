@@ -28,9 +28,7 @@
         var arg1 = $(elem).parent().find('#arg1').val();
         var arg2 = $(elem).parent().find('#arg2').val(); 
         var arg3 = $(elem).parent().find('#arg3').val();
-        
         answer.slideUp(350, function(){
-            
         //------> check VK + Btag
             if(VK == '' || Btag == ''){
                 answer.html(error[3]).slideDown(600);
@@ -45,38 +43,18 @@
                 return false;
             }
             
-            if(VK == '' || Btag == '' || arg1 == null || arg2 == null || arg3 == null){
+            if(VK == '' || Btag == ''){
                 answer.html(error[3]).slideDown(600);
                 return false;   
             }
-            
-            if(arg1 == arg2 || arg1 == arg3 || arg2 == arg3){
-                answer.html(error[4]).slideDown(600);
-                return false;   
-            }
-            
-            $.post('/ajax.php', {type:'tour', mod:'tourInfoByID', id:id}, function(data){
-                tData = JSON.parse(data);
-                //------> random Race HS
-                if(tData.tourgame == 'Hearthstone' && tData.tourmode == 'Random'){ 
-                    var arr = []; while(arr.length < 3){
-                        var randomnumber=Math.ceil(Math.random()*8);
-                        var found=false; for(var i=0;i<arr.length;i++){
-                            if(arr[i]==randomnumber){
-                                found = true; break;
-                            }} if(!found)arr[arr.length]=randomnumber;}
-                    var heroes = [ "", "Hunter", "Paladin", "Warrior", "Shaman", "Priest", "Druid", "Warlock", "Rogue" ];
-                    var arg1 = heroes[arr[0]]; var arg2 = heroes[arr[1]]; var arg3 = heroes[arr[2]];
-                }
 
-                $.post('/ajax.php', {type:'tour', mod:'tourReg', id:id, VK:VK, Btag:Btag, arg1:arg1, arg2:arg2, arg3:arg3}, function(data){
-                    if(data == 0){
-                        answer.removeClass().addClass("dialog dialog-success").html(error[0]).slideDown(350);  
-                    }else{
-                        answer.removeClass().addClass("dialog dialog-danger").html(error[data]).slideDown(350);  
-                    }
-                });
-            });  
+            $.post('/ajax.php', {type:'tour', mod:'tourReg', id:id, VK:VK, Btag:Btag, arg1:arg1, arg2:arg2, arg3:arg3}, function(data){
+                if(data == 0){
+                    answer.removeClass().addClass("dialog dialog-success").html(error[0]).slideDown(350);  
+                }else{
+                    answer.removeClass().addClass("dialog dialog-danger").html(error[data]).slideDown(350);  
+                }
+            });   
         });  
     }
 
