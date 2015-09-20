@@ -504,6 +504,12 @@ background: rgba(236, 240, 241, 0.51);
     width: 40px;
     height: 40px;
 }
+.tourney-div-select{
+    border-right: 1px solid #1abc9c;
+}
+.tourney-div-select:hover{
+    border-right: 1px solid #bdc3c7;
+}
 .tstatus-live{
     background-color: #c0392b;
 }
