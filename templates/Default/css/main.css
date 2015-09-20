@@ -254,8 +254,20 @@ background: rgba(236, 240, 241, 0.51);
     font-size: 12px;
     
 }
+.tournament-clear-block{
+    margin: 0;
+    padding: 0;
+}
 
-
+.tournament-clear-block > div{
+   background: white !important; 
+}
+.tournament-clear-block .obj-winners-text-2, .tournament-clear-block .obj-winners-text-1{
+  height: 22px !important;
+}
+.tournament-clear-block .obj-winners-text-1{
+    font-size: 12px !important;
+}
 /************************************
         Elements Content -- END
 ************************************/
@@ -450,6 +462,7 @@ background: rgba(236, 240, 241, 0.51);
     width: 100% !important;
     color: #34495e;
     margin-bottom: 3px;
+    padding: 3px 5px 3px 5px;
 }
 .tourney-div > div:nth-child(1){
     min-width: 60px;
@@ -463,11 +476,11 @@ background: rgba(236, 240, 241, 0.51);
     background: rgba(236, 240, 241, 0.9);
     text-align: left;
 }
-.tourney-div > div:nth-child(2):hover{
+.tourney-div-2 > div:nth-child(2):hover{
     border-right: 1px solid #c0392b;
     background: #ecf0f1;
 }
-.tourney-div > div:nth-child(2):active{
+.tourney-div-2 > div:nth-child(2):active{
     border-right: 1px solid #c0392b;
     background: #ecf0f1;
 }

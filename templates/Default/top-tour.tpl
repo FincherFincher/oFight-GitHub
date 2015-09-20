@@ -1,4 +1,4 @@
-<div class="table tourney-div" onclick="window.open('/tourney/{TOURLINK}' ,'_self');">
+<div class="table tourney-div tourney-div-2" onclick="window.open('/tourney/{TOURLINK}' ,'_self');">
    {TOURSTATUS}
    <div class="cell pointer">
         <span>{TOURNAME}</span>

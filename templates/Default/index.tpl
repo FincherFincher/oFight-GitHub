@@ -19,7 +19,7 @@
           <div class="col-md-4 col-sm-5 col-xs-6 tourney-block-head">
             <div class="block">
                <!--
-                <div class="table tourney-div" onclick="window.open('/tourney/1' ,'_self');">
+                <div class="table tourney-div tourney-div-2" onclick="window.open('/tourney/1' ,'_self');">
                    <div class="cell tstatus-live"><img src="/uploads/sys/up-1.jpg" class="img-responsive" alt="Hearthstone турнир"></div>
                    <div class="cell pointer">
                         <span>UPgrade.ru</span>
@@ -33,7 +33,7 @@
                 
                 {TOPTOURSPECIAL}
                 
-                <div class="table tourney-div" onclick="window.open('/tour-create' ,'_self');">
+                <div class="table tourney-div tourney-div-2" onclick="window.open('/tour-create' ,'_self');">
                     <div class="cell tstatus-new">NEW</div>
                    <div class="cell pointer">
                         <span>Создай свой турнир</span>
