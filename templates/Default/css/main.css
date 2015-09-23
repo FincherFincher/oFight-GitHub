@@ -476,6 +476,9 @@ background: rgba(236, 240, 241, 0.51);
     background: rgba(236, 240, 241, 0.9);
     text-align: left;
 }
+.tourney-div-2{
+    padding: 0 5px 0 5px !important;
+}
 .tourney-div-2 > div:nth-child(2):hover{
     border-right: 1px solid #c0392b;
     background: #ecf0f1;
@@ -505,10 +508,10 @@ background: rgba(236, 240, 241, 0.51);
     height: 40px;
 }
 .tourney-div-select{
-    border-right: 1px solid #1abc9c;
+    border-right: 1px solid #bdc3c7;
 }
 .tourney-div-select:hover{
-    border-right: 1px solid #bdc3c7;
+    border-right: 1px solid #1abc9c;
 }
 .tstatus-live{
     background-color: #c0392b;

@@ -1507,8 +1507,8 @@ function testAjax(){
                                         success: function(data){
                                             enemyGr = JSON.parse(data);
                                             var gN = new Array();
-                                            var alphabet = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL');  
-                                            for(j = 0; j <= 30; j++)
+                                            var alphabet = new Array('_', 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');   
+                                            for(j = 0; j <= 20; j++)
                                             {
                                                 gN[j] = alphabet[j];
                                             }
@@ -1856,8 +1856,8 @@ function testAjax(){
                             if(data.group != null){
 
                                 var gN = new Array();
-                                var alphabet = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL');   
-                                for(j = 0; j <= 30; j++)
+                                var alphabet = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');   
+                                for(j = 0; j <= 20; j++)
                                 {
                                     gN[j] = alphabet[j];
                                 }

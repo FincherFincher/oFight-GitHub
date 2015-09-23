@@ -7,7 +7,7 @@
             <img src="/uploads/sys/up-1.jpg" class="img-responsive" alt="Онлайн турниры UPCUP от журнала UPgrade.ru">
 
             <div class="block unit tourpagestyle">
-               
+                <!--
                 <div class="unit-v3">Турнирное расписание:</div>
                
                 <div class="unit-v1">
@@ -15,7 +15,7 @@
                     <span>UPCUP # 3</span>
                     <span class="unit-btn-green pointer" onclick="window.open('/tourney/9' ,'_self');">&nbsp;&nbsp;&nbsp;12 сентября&nbsp;&nbsp;&nbsp;</span>
                 </div>
-
+                -->
                 
                 
                 
@@ -42,6 +42,11 @@
 -->
 
                 <div class="unit-v3">Победители в турнирах:</div>
+                <div class="unit-v1">
+                    <span class="fa fa-star fa-fw"></span>
+                    <span>UPCUP #3</span>
+                    <span class="unit-stat-purpl">&nbsp;&nbsp;&nbsp;<a href="/user/profile/naym18">naym18</a>&nbsp;&nbsp;&nbsp;</span>
+                </div>
                 <div class="unit-v1">
                     <span class="fa fa-star fa-fw"></span>
                     <span>UPCUP #2</span>

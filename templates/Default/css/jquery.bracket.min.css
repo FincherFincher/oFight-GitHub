@@ -121,7 +121,7 @@ body {
 }
 .tourBracket-gBlock{
     display: inline-block;
-    margin: 0 20px 0 0;
+    margin: 0 20px 15px 0;
 }
 .tourBracket-gBlock > p{
     margin: 5px 0 12px 0;
