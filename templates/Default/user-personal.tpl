@@ -1,6 +1,6 @@
 <style>body{background: rgba(189, 195, 199, 0.4);}</style> 
 <div class="col-md-3 col-sm-4 col-xs-6">
-<div class="unit-head">Персональные данные</div>
+<div class="unit-head">{UNAME}</div>
 <div class="img-link widget-line">
     <a class="widget-line">
         <div>

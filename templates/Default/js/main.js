@@ -1685,6 +1685,9 @@ function testAjax(){
 
     function brackets_profile(elem){
         var name = $(elem).html();
+        if(name == 'Free Slot'){
+            return false;
+        }
         window.open('/user/profile/'+name ,'_blank');
     }
 

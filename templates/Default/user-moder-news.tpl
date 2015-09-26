@@ -6,7 +6,7 @@
         </div> 
         <div style="display:none;">
                 <div class="form-group">
-                    <input type="text" maxlength="40" id="news_titlename" required="" value="{NAME}" placeholder="&nbsp;&nbsp;Заголовок статьи" class="form-control input-sm">
+                    <input type="text" maxlength="60" id="news_titlename" required="" value="{NAME}" placeholder="&nbsp;&nbsp;Заголовок статьи" class="form-control input-sm">
                 </div>
 
                 <div class="form-group">

@@ -1,5 +1,5 @@
 <div class="col-md-3 col-sm-4 col-xs-6">
-   <div class="unit-head">Персональные данные</div>
+   <div class="unit-head">{UNAME}</div>
 
     <div class="img-link widget-line">
         <a class="widget-line">

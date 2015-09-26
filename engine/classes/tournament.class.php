@@ -1364,7 +1364,7 @@
                 if( ($maxFS_real > 0) && ($i % 3 == 0) )
                 {
                     $query = $this->db->prepare(" UPDATE ".'oF_tour_brackettable_'.$tData['id']." 
-                                                  SET r0 = '".$i."', r1rez = 'D', r1finalrez = 'D', r2rez = 'D', r2finalrez = 'D', r3rez = 'D', r3finalrez = 'D', points = - 9
+                                                  SET r0 = '".$i."', r1rez = 'D', r1finalrez = 'D', r2rez = 'D', r2finalrez = 'D', r3rez = 'D', r3finalrez = 'D', points = - 6
                                                   WHERE username = 'Free Slot' AND r0 = '' LIMIT 1 ")->execute();
                     $i++; 
                     $maxFS_real--;
@@ -1468,7 +1468,10 @@
             }
             
             $query = $this->db->prepare(" UPDATE oF_tour_cPanel SET tourtechstart = 'yes' WHERE id = '".$tData['id']."' ")->execute();
-            $this->db->query(" update ".'oF_tour_table_'.$tData['id']." set tConfirm = NOW() WHERE username != 'Free Slot' ");
+            $this->db->query(" update ".'oF_tour_brackettable_'.$tData['id']." set tConfirm = NOW() WHERE username != 'Free Slot' ");
+            
+            
+            
         }
 
         function startTourOlympia($tData)

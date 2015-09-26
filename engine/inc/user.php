@@ -41,8 +41,8 @@
             $tpl->set('{AVATAR}',  '/uploads/avatars/'.$uDate['avatar']);
             $tpl->set('{BTAG}',  $uDate['bnettag']);
             $tpl->set('{VKCOM}',  $uDate['vkcom']);
+            $tpl->set('{UNAME}',  $_SESSION['username']);
         }else{
-            
             $tpl->load_template('user-other.tpl');
             $tpl->compile('USERBLOCK1');
             $tpl->clear();
@@ -51,8 +51,7 @@
             $tpl->set('{USERBLOCK2}', '');
             $tpl->set('{USERBLOCK3}', '');            
             $tpl->set('{USERBLOCK4}', '');
-            
-            
+
             $uName = $this->url_path[2];  
             $uDate = $user->userinfo($uName);
             
@@ -68,6 +67,7 @@
             $tpl->set('{AVATAR}',  '/uploads/avatars/'.$uDate['avatar']);
             $tpl->set('{BTAG}',  $uDate['bnettag']);
             $tpl->set('{VKCOM}',  $uDate['vkcom']);
+            $tpl->set('{UNAME}',  $this->url_path[2]);
         }
         
         $tpl->set('{HSRANK}',  $user->getRankingByUser($uName)[1]); 

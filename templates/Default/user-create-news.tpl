@@ -3,7 +3,7 @@
     <div class="unit-head">Создание статьи</div>
     <div class="block unit">
         <div class="form-group">
-            <input type="text" maxlength="40" id="news_titlename" required="" placeholder="&nbsp;&nbsp;Заголовок статьи" class="form-control input-sm">
+            <input type="text" maxlength="60" id="news_titlename" required="" placeholder="&nbsp;&nbsp;Заголовок статьи" class="form-control input-sm">
         </div>
 
         <div class="form-group">

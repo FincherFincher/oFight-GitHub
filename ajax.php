@@ -396,13 +396,15 @@
                     $tUser = $tour->tourUser($tData, $uName); 
                     $round = $tour->tourUserRound($tUser, $tData);  
                     $tEnemy = $tour->tourEnemy($tData, $tUser, $round);
+                    $tEnemy_next = $tour->tourEnemy($tData, $tUser, min(($round + 1),3));
                     echo $tour->setDisqualifyByAdmin($tData, $tUser);
                     
                     $SHM = new Block($tData['id']);
                     $obj = json_decode($SHM->read(), true);
                     $obj[$tEnemy['username']] = 1;
+                    $obj[$tEnemy_next['username']] = 1;  
                     $SHM->write(json_encode($obj));
-                    
+
                     break;  
                     
                     
