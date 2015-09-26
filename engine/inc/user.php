@@ -36,6 +36,8 @@
             
             $uName = $_SESSION['username'];
             $uDate = $user->userinfo($uName);
+
+            $tpl->set('{PROFILEIMG_1_COUNT}',  rand(1,5));
             $tpl->set('{AVATAR}',  '/uploads/avatars/'.$uDate['avatar']);
             $tpl->set('{BTAG}',  $uDate['bnettag']);
             $tpl->set('{VKCOM}',  $uDate['vkcom']);
@@ -62,6 +64,7 @@
                 $uDate['vkcom'] = 'Не указан';
             }
             
+            $tpl->set('{PROFILEIMG_1_COUNT}',  rand(1,5));
             $tpl->set('{AVATAR}',  '/uploads/avatars/'.$uDate['avatar']);
             $tpl->set('{BTAG}',  $uDate['bnettag']);
             $tpl->set('{VKCOM}',  $uDate['vkcom']);

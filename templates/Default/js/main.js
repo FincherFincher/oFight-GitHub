@@ -1181,6 +1181,48 @@ function testAjax(){
         });  
     }
 
+    //------> Дисквалификация
+
+    function setDisqualifyByAdmin(elem){
+        var error = new Array( 'Игрок дисквалифицирован', 'Неверное имя игрока' ); 
+        var answer = $(elem).parent().find('.dialog');
+        var user = $(elem).parent().find('#setDisqualifyByAdmin_user').val(); $(elem).parent().find('#setDisqualifyByAdmin_user').val('');
+        answer.slideUp(450, function(){
+            $.post('/ajax.php', {type:'tour', mod:'setDisqualifyByAdmin', user:user}, function(data){
+                if(data == 0){
+                    answer.removeClass().addClass("dialog dialog-success").html(error[data]).slideDown(350); 
+                }else{
+                    answer.removeClass().addClass("dialog dialog-danger").html(error[data]).slideDown(350); 
+                }
+            });   
+        }); 
+    }
+
+
+    function SelfDisqualify_set(elem){
+        var set = $(elem).parent();
+        var conf = set.next();
+        set.slideUp(450, function(){
+            conf.slideDown(550); 
+        }); 
+    }
+    function SelfDisqualify_conf(elem){
+        var conf = $(elem).parent();
+        var user = getCookie('username');
+        conf.slideUp(550, function(){
+            $.post('/ajax.php', {type:'tour', mod:'setDisqualifyByAdmin', user:user}, function(data){
+                pagerefresh();
+            }); 
+        });  
+    }
+    function SelfDisqualify_cancel(elem){
+        var conf = $(elem).parent();
+        var set = conf.prev();
+        conf.slideUp(550, function(){
+            set.slideDown(450); 
+        }); 
+    }
+
     //------> Get info   getInfoAboutUser_data
 
     function getInfoAboutUser(elem)
@@ -1423,7 +1465,7 @@ function testAjax(){
                     };
                     
                     var tourFAQ = {
-                                      "Hearthstone": '-&nbsp;&nbsp;все игры до 2х побед, финал до 3х<br>-&nbsp;&nbsp;победитель матча меняет колоду всегда<br>-&nbsp;&nbsp;проигравший меняет колоду по желанию<br>-&nbsp;&nbsp;всегда нужно делать screen-shot побед<br>-&nbsp;&nbsp;противник&nbsp;&nbsp;АФК более 15 минут, - авто-луз<br>-&nbsp;&nbsp;с проблемами обращаться к админам в <a href="http://ofight.ru/chat">чате</a>'
+                                      "Hearthstone": '-&nbsp;&nbsp;игры до 2х побед, финал до 3х<br>-&nbsp;&nbsp;победитель всегда меняет колоду<br>-&nbsp;&nbsp;проигравший по желанию<br>-&nbsp;&nbsp;нужно делать screen-shot побед<br>-&nbsp;&nbsp;противник&nbsp;&nbsp;АФК >15 мин, - auto-kick<br>-&nbsp;&nbsp;с проблемами обращаться в <a href="http://ofight.ru/chat">чат</a>'
                                   };
                     
                     var ShowStatus = {
@@ -1465,6 +1507,9 @@ function testAjax(){
                             }
 
                             $('#tBlock-data-status').html(ShowStatus[uStatus.tourStatus]); 
+                            if(uStatus.tourStatus == 'EnemyResultEmpty'){
+                                $('#delete_result').show(); 
+                            }
                             $('#tBlock-data-faq').html(tourFAQ[uStatus.tourData.tourgame]);
                         
                             //Ввод подтверждения
@@ -1578,6 +1623,15 @@ function testAjax(){
              $('#uTour-6').slideDown(900); 
         });
     }  
+    function delete_result(elem){
+        $.post('/ajax.php', {type:'tour', mod:'delete_result'}, function(){
+            $(elem).hide();
+            userTourStatus();
+        }); 
+    }
+
+
+
 // лучше вседелать потом на стороне сервера + проверки на BO
     function tourbtnscore(elem){
         var scoreMy = parseInt($('#uTour-6-My').val(),10);

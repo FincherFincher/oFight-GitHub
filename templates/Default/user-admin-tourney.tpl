@@ -23,7 +23,18 @@
 
                 <a class="btn btn-lg btn-block btn-primary button" onclick="setWinnerByAdmin(this);">Продвинуть вперед</a>
                 <div class="dialog dialog-danger"></div>  
-            </div>                     
+            </div> 
+            
+            <div>
+                <div class="unit-head-sm"><p>Дисквалификация игрока</p></div> 
+                <div class="unit-text-sm">Введите логин игрока и он будет немедленно дисквалифицирован с турнира</div> 
+                <div class="form-group" >
+                    <input id="setDisqualifyByAdmin_user" type="text" value="" required="" placeholder="&nbsp;&nbsp;Кого дисквалифицируем?" class="form-control input-sm">
+                </div>  
+                <a class="btn btn-lg btn-block btn-primary button" onclick="setDisqualifyByAdmin(this);">Дисквалификация</a>
+                <div class="dialog dialog-danger"></div>  
+            </div>  
+                                                                                      
             <div>
                 <div class="unit-head-sm"><p>Данные участника</p></div>
                 <div class="unit-text-sm">Введите логин пользователя, участника турнира</div>

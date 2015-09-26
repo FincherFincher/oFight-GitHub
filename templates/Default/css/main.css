@@ -912,6 +912,21 @@ background: rgba(236, 240, 241, 0.51);
     height: 34px;
     width: 34px;
 }
+.unit-button-purple{
+    background: #9b59b6;
+}
+.unit-button-purple:hover{
+    background: #8e44ad; 
+}
+.unit-button-red{
+    background: #e74c3c;
+}
+.unit-button-red:hover{
+    background: #c0392b;
+}
+
+
+
 .obj-winners{
     
 }
@@ -1030,7 +1045,7 @@ background: rgba(236, 240, 241, 0.51);
 #trez-rez3{
     display: none;
 }
-#trez-cl{
+#trez-cl, .unit-cancel{
     width: 100%;
     text-align: center;
     padding: 5px 0 5px 0;
@@ -1040,7 +1055,9 @@ background: rgba(236, 240, 241, 0.51);
 #trez-cl:hover{
     color: #1abc9c;
 }
-
+.unit-cancel:hover{
+    color: #1abc9c;
+} 
 .trez-rezn{
     margin: 0px;
 }
@@ -2236,7 +2253,9 @@ background: rgba(236, 240, 241, 0.51);
 .panel-streamer,
 .panel-tour-admin,
 .panel-tour-close,
-.panel-news-edit
+.panel-news-edit,
+#SelfDisqualify_conf,
+#delete_result
 {
     display: none;
 }

@@ -215,13 +215,13 @@
                                         <div class="cell tstatus-live">LIVE!</div>
                                         <div id="tBlock-data-name"></div>
                                     </a>
-
+                                    
                                     <div class="unit-toptour-v2 table">
                                        <a href="" target="_blank" class="cell" id="tBlock-data-bracket">Сетка</a>
                                        <a href=""></a>
                                        <a href="" target="_blank" class="cell" id="tBlock-data-rule">Правила</a>
                                     </div>
-                                    
+
                                     <div class="unit-toptour-v3 table">
                                       <div class="cell" id="tBlock-data-round"></div>
                                     </div>
@@ -232,9 +232,9 @@
                                     
                                     <p id="tBlock-data-user-heroes"></p>
                                     <p id="tBlock-data-status"></p>
-
-                                    <div onclick="accDuel(this);" href="#fakelink" class="btn btn-lg btn-block btn-primary button unit-btn-red unit-toptour-v4" id="tBlock-data-confirm">
-                                        Подтвердить участие&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;&nbsp;&nbsp;<font id="tmain-timer">546</font>
+                                    
+                                    <div onclick="accDuel(this);" href="#fakelink" class="btn btn-lg btn-block btn-primary button unit-button-red unit-toptour-v4" id="tBlock-data-confirm">
+                                        Подтвердить участие&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;&nbsp;&nbsp;<font id="tmain-timer"></font>
                                     </div>
                                 </div>
                             </div>
@@ -253,6 +253,8 @@
                             <p id="tBlock-data-en-vk"></p>
                             <p id="tBlock-data-en-race"></p>
                             <hr>
+                                    
+                            <div onclick="delete_result(this);" id="delete_result" href="#fakelink" class="btn btn-lg btn-block btn-primary button unit-button-red">Отменить результат</div>
 
                             <div id="uTour-4">
                                 <div onclick="tourbtn();" href="#fakelink" class="btn btn-lg btn-block btn-primary button">Ввести результат игр</div>
@@ -261,9 +263,10 @@
 
                             <div id="uTour-5">
                                 <div onclick="tourbtnrezMy();" href="#fakelink" class="btn btn-lg btn-block btn-primary button trez-rez" name="Win">Победил</div>
-                                <div onclick="tourbtnrezEn();" class="btn btn-lg btn-block btn-primary button unit-btn-red" name="Defeat">Проиграл</div>
+                                <div onclick="tourbtnrezEn();" class="btn btn-lg btn-block btn-primary button unit-button-red" name="Defeat">Проиграл</div>
                             </div>
 
+                           
                             <div id="uTour-6">
                                 <p>Укажите итоговый счет:</p>
                                 <div class="input-group trez-rezn">
@@ -286,7 +289,7 @@
                
 
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-4">
+          <div class="col-xs-6 col-sm-6 col-md-3">
 
             <div class="system-msg-red table tBlock-data-bold">
               <div class="cell">Частые вопросы</div>
@@ -294,10 +297,20 @@
             <div class="system-msg-white table">
               <div class="cell" id="tBlock-data-faq"></div>
             </div>
-             
+
+            <div>
+                <div><div onclick="SelfDisqualify_set(this);" href="#fakelink" class="btn btn-lg btn-block btn-primary button">Сдаться и покинуть турнир?</div></div>
+                <div id="SelfDisqualify_conf">
+                    <div onclick="SelfDisqualify_conf(this);" href="#fakelink" class="btn btn-lg btn-block btn-primary button unit-button-red">Подтверждаете, что сдаетесь?</div>
+                    <p onclick="SelfDisqualify_cancel(this);" class="unit-cancel">Отменить капитуляцию</p>
+                </div>
+            </div>
+              
+              
+              
               
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-2">&nbsp;</div>
+          <div class="col-xs-6 col-sm-6 col-md-3">&nbsp;</div>
           <div class="col-xs-6 col-sm-6 col-md-3 hidden-xs hide" style="displey: none;">
               <div class="block unit" id="uTour-9"></div>
           </div>

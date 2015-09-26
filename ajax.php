@@ -385,7 +385,42 @@
                     $SHM->write(json_encode($obj));
 
                     break;  
-                
+                    
+            //------>  Дисквалификация
+                    
+                case 'setDisqualifyByAdmin':
+                    $uName = $_POST['user'];  
+                    $id = $tour->tourUserCheck($uName);
+                    if($id == 'noTour'){echo '1'; break;}
+                    $tData = $tour->getTourinfo($id); 
+                    $tUser = $tour->tourUser($tData, $uName); 
+                    $round = $tour->tourUserRound($tUser, $tData);  
+                    $tEnemy = $tour->tourEnemy($tData, $tUser, $round);
+                    echo $tour->setDisqualifyByAdmin($tData, $tUser);
+                    
+                    $SHM = new Block($tData['id']);
+                    $obj = json_decode($SHM->read(), true);
+                    $obj[$tEnemy['username']] = 1;
+                    $SHM->write(json_encode($obj));
+                    
+                    break;  
+                    
+                    
+            //------>  Удалить результат
+                    
+                case 'delete_result':
+                    $uName = $_SESSION['username']; session_write_close();
+                    $id = $tour->tourUserCheck($uName);
+                    $tData = $tour->getTourinfo($id); 
+                    $tUser = $tour->tourUser($tData, $uName); 
+                    $round = $tour->tourUserRound($tUser, $tData);  
+                    $tmpRez= ''; $result = '';
+                    
+                    $tour->tourResult($uName, $tData, $tUser, $round, $tmpRez, $result);
+
+                    break;  
+                    
+                    
             //------>  Get Info Player
                 
                 case 'getInfoAboutUser':
@@ -469,7 +504,7 @@
                     $round = $tour->tourUserRound($tUser, $tData);                                                                         
                     $tEnemy = $tour->tourEnemy($tData, $tUser, $round);
                     
-                    $tour->tourResult($uName, $tData, $tUser, $round, $tmpRez, $result, $tEnemy);
+                    $tour->tourResult($uName, $tData, $tUser, $round, $tmpRez, $result);
 
                     $tUser = $tour->tourUser($tData, $uName);   
                     
@@ -560,9 +595,13 @@
                         $tEnemyData = $user->userinfo($tEnemy['username']);
                         
                   //  print_r($tUserStatus); break;
-
+                    /*
                         $tConfirmTime = strtotime('now') - strtotime($tData['tourdate']);
                         $tConfirmTime = 900 - $tConfirmTime;
+                        
+                   */     
+                        $tConfirmTime = 900 - (strtotime('now') - strtotime($tUser['tConfirm']));
+                        
 
                         if($tConfirmTime < 0)
                         {

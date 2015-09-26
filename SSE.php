@@ -8,7 +8,7 @@
     $uName = $_SESSION['username']; 
     session_write_close();
 
-    $SHM = new Block('99999');
+    $SHM = new Block('99998');
     $arrID = json_decode($SHM->read(), true);
 
     if(empty($arrID[$uName]))

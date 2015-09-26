@@ -11,7 +11,7 @@
                 </div>
             </div>
         </a>
-        <img src="/uploads/userProfile-bg-hs-1.jpg" class="img-responsive" alt="Аватар пользователя oFight.ru">
+        <img src="/uploads/sys/profile/userProfile-bg-hs-{PROFILEIMG_1_COUNT}.jpg" class="img-responsive" alt="Аватар пользователя oFight.ru">
     </div>
 
     <div class="block unit">
