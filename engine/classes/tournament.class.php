@@ -1286,7 +1286,7 @@
 
                     $fScore = explode(':', $tUser['tmpRez']);
                     $query = $this->db->prepare(" UPDATE ".'oF_tour_table_'.$tData['id']."
-                                                  SET ".'r'.$round.'finalrez'." = 'W', ".'r'.$round.'score'." = '".$fScore[0]."', tmpRez = '' WHERE username = '".$uName."';
+                                                  SET ".'r'.$round.'finalrez'." = 'W', ".'r'.$round.'score'." = '".$fScore[0]."', tmpRez = '', tConfirm = NOW() WHERE username = '".$uName."';
                                                   UPDATE oFight_users_HS SET wincount = wincount + 1 WHERE username = '".$uName."';
                                                   UPDATE ".'oF_tour_table_'.$tData['id']." 
                                                   SET ".'r'.$round.'finalrez'." = 'D', ".'r'.$round.'score'." = '".$fScore[1]."', tmpRez = '', tDoubleElem = 'yes' WHERE username = '".$tEnemy['username']."';
@@ -1300,7 +1300,7 @@
                                                   SET ".'r'.$round.'finalrez'." = 'D', ".'r'.$round.'score'." = '".$fScore[1]."', tmpRez = '', tDoubleElem = 'yes' WHERE username = '".$uName."';
                                                   UPDATE oFight_users_HS SET defeatcount = defeatcount + 1 WHERE username = '".$uName."';
                                                   UPDATE ".'oF_tour_table_'.$tData['id']." 
-                                                  SET ".'r'.$round.'finalrez'." = 'W', ".'r'.$round.'score'." = '".$fScore[0]."', tmpRez = '' WHERE username = '".$tEnemy['username']."';
+                                                  SET ".'r'.$round.'finalrez'." = 'W', ".'r'.$round.'score'." = '".$fScore[0]."', tmpRez = '', tConfirm = NOW() WHERE username = '".$tEnemy['username']."';
                                                   UPDATE oFight_users_HS SET wincount = wincount + 1 WHERE username = '".$tEnemy['username']."' ")->execute();
                 }    
             }
