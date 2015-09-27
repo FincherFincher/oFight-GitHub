@@ -89,8 +89,13 @@
         
         
 
+        function getGuidesById($quantity)
+        {
+            $sql = " SELECT id FROM oFight_news WHERE guidesgame = 'Hearthstone' order by rand() limit " . $quantity;
+            return $this->db->query($sql);  
+        }
         
-        
+
         
     }
 

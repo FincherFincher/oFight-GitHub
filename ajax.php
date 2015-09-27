@@ -397,7 +397,7 @@
                     $round = $tour->tourUserRound($tUser, $tData);  
                     $tEnemy = $tour->tourEnemy($tData, $tUser, $round);
                     $tEnemy_next = $tour->tourEnemy($tData, $tUser, min(($round + 1),3));
-                    echo $tour->setDisqualifyByAdmin($tData, $tUser);
+                    echo $tour->Kick_user_from_tourney($tData, $tUser, $round, $tEnemy);
                     
                     $SHM = new Block($tData['id']);
                     $obj = json_decode($SHM->read(), true);

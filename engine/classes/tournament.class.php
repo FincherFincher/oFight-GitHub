@@ -125,56 +125,67 @@
         function tourKickAfk($tData)
         {  
             $tUpdate = array();
+            
             if($tData['tourmod'] == 'Spartan')
             { 
                 $data = $this->db->query(" SELECT username FROM ".'oF_tour_brackettable_'.$tData['id']." WHERE tConfirm + 900 < NOW() AND tConfirm != 0 ")->fetchAll(PDO::FETCH_COLUMN);  
-                if(empty($data))
-                {
-                    exit();
-                }
-                foreach($data as $key => $uName)
-                {
-                    $tUser = $this->tourUser($tData, $uName);
-                    $round = $this->tourUserRound($tUser, $tData); 
-                    $tEnemy = $this->tourEnemy($tData, $tUser, $round);
-                    array_push($tUpdate, $tEnemy['username']);
-
-                    $sql = " UPDATE ".'oF_tour_brackettable_'.$tData['id']." 
-                             SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', points = -6 
-                             WHERE username = '".$uName."' ";
-                    $query = $this->db->query($sql);
-                    $sql = " DELETE FROM oF_tour_users WHERE username = '".$uName."' and tourid = '".$tData['id']."' ";
-                    $query = $this->db->query($sql);
-                } 
-                return $tUpdate;
             }
             if($tData['tourmod'] == 'Olympia')
             {
                 $data = $this->db->query(" SELECT username FROM ".'oF_tour_table_'.$tData['id']." WHERE tConfirm + 900 < NOW() AND tConfirm != 0 ")->fetchAll(PDO::FETCH_COLUMN);
-                if(empty($data))
-                {
-                    exit();
-                }
-                foreach($data as $key => $uName)
-                {
-                    $tUser = $this->tourUser($tData, $uName);
-                    $round = $this->tourUserRound($tUser, $tData); 
-                    $tEnemy = $this->tourEnemy($tData, $tUser, $round);
-                    array_push($tUpdate, $tEnemy['username']);
-                    
-                    $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." 
-                             SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', r4rez = 'D', r4finalrez  = 'D', r5rez = 'D', r5finalrez  = 'D', r6rez = 'D', r6finalrez  = 'D', r7rez = 'D', r7finalrez  = 'D', r8rez = 'D', r8finalrez  = 'D', r9rez = 'D', r9finalrez  = 'D', r10rez = 'D', r10finalrez  = 'D' 
-                             WHERE username = '".$uName."' ";
-                    $query = $this->db->query($sql);
-                    $sql = " DELETE FROM oF_tour_users WHERE username = '".$uName."' and tourid = '".$tData['id']."' ";
-                    $query = $this->db->query($sql);
-                }
-                return $tUpdate;
+            } 
+            if(empty($data))
+            {
+                exit();
             }
+    
+            foreach($data as $key => $uName)
+            {
+                $tUser = $this->tourUser($tData, $uName);
+                $round = $this->tourUserRound($tUser, $tData); 
+                $tEnemy = $this->tourEnemy($tData, $tUser, $round);
+                array_push($tUpdate, $tEnemy['username']);
+                $this->Kick_user_from_tourney($tData, $tUser, $round, $tEnemy)
+
+            } 
+            return $tUpdate;
         }
         
 
                             
+        
+        
+        function Kick_user_from_tourney($tData, $tUser, $round, $tEnemy)
+        {
+            if($tData['tourmod'] == 'Spartan')
+            {
+                if(empty($tUser['MoveTo_SE']))
+                { 
+                    $sql = " UPDATE ".'oF_tour_brackettable_'.$tData['id']." 
+                             SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', points = -6 
+                             WHERE username = '".$tUser['username']."' "; 
+                    $this->db->query($sql);
+                } else {
+                    goto Kick_user_from_tourney_LEBEL;
+                }
+            }
+            if($tData['tourmod'] == 'Olympia')
+            {
+                Kick_user_from_tourney_LEBEL:
+                if($tEnemy['username'] == 'Free Slot')
+                {
+                    $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." 
+                             SET ".'r'.$round.'rez'." = 'W',".'r'.$round.'finalrez'." = 'W', ".'r'.($round+1).'rez'." = 'D',".'r'.($round+1).'finalrez'." = 'D', FreeSlotHide = 'y' 
+                             WHERE username = '".$tUser['username']."' ";    
+                } else {
+                    $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." SET ".'r'.$round.'rez'." = 'D',".'r'.$round.'finalrez'." = 'D', FreeSlotHide = 'y' WHERE username = '".$tUser['username']."' ";  
+                }
+                $this->db->query($sql);
+            } 
+            $this->db->query(" DELETE FROM oF_tour_users WHERE username = '".$tUser['username']."' and tourid = '".$tData['id']."' ");
+        }
+        
+        
         
         
   
@@ -286,34 +297,21 @@
          
         }
         
-        //------> Дисквалификация
+        
+
+
         
         
-        function setDisqualifyByAdmin($tData, $tUser)
-        {
-            if($tData['tourmod'] == 'Spartan'){
-                if(empty($tUser['MoveTo_SE']))
-                { 
-                    $sql = " UPDATE ".'oF_tour_brackettable_'.$tData['id']." 
-                             SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', points = -6 
-                             WHERE username = '".$tUser['username']."' ";  
-                }
-                if(!empty($tUser['MoveTo_SE']))
-                {
-                    goto setDisqualifyByAdmin_lebel;
-                }   
-            }
-            if($tData['tourmod'] == 'Olympia')
-            {
-                setDisqualifyByAdmin_lebel:
-                $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." 
-                         SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', r4rez = 'D', r4finalrez  = 'D', r5rez = 'D', r5finalrez  = 'D', r6rez = 'D', r6finalrez  = 'D', r7rez = 'D', r7finalrez  = 'D', r8rez = 'D', r8finalrez  = 'D', r9rez = 'D', r9finalrez  = 'D', r10rez = 'D', r10finalrez  = 'D' 
-                         WHERE username = '".$tUser['username']."' ";   
-            }
-            $this->db->query($sql);
-            $this->db->query(" DELETE FROM oF_tour_users WHERE username = '".$tUser['username']."' and tourid = '".$tData['id']."' ");
-            return 0;
-        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -904,7 +902,7 @@
                  return 'TourEndForUser';
             }
 
-            if( $tEnemy['username'] == 'Free Slot' )
+            if( $tEnemy['username'] == 'Free Slot' ||  $tEnemy['FreeSlotHide'] == 'y')
             {
                 $query = $this->db->query(" UPDATE ".'oF_tour_table_'.$tData['id']." 
                                             SET ".'r'.$round.'rez'." = 'W', ".'r'.$round.'finalrez'." = 'W', ".'r'.$round.'score'." = 2
@@ -1205,7 +1203,7 @@
                                                       UPDATE oFight_users_HS SET wincount = wincount + 1 WHERE username = '".$uName."';
                                                       
                                                       UPDATE ".'oF_tour_brackettable_'.$tData['id']." 
-                                                      SET ".'r'.$round.'finalrez'." = 'D', tmpRez = '', rtime = '0', points = points - '$prateLosser', tConfirm = NOW()
+                                                      SET ".'r'.$round.'finalrez'." = 'D', tmpRez = '', rtime = '0', points = points - '$prateLosser'
                                                       WHERE username = '".$tEnemy['username']."';
                                                       
                                                       UPDATE oFight_users_HS SET defeatcount = defeatcount + 1 WHERE username = '".$tEnemy['username']."' ")->execute();
@@ -1238,7 +1236,7 @@
                         $prateLosser = $this->getTourRateValue($tEnemy['username'], $fScore, 'def');
 
                         $query = $this->db->prepare(" UPDATE ".'oF_tour_brackettable_'.$tData['id']." 
-                                                      SET ".'r'.$round.'finalrez'." = 'D', tmpRez = '', rtime = '0', points = points - '$prateLosser', tConfirm = NOW()
+                                                      SET ".'r'.$round.'finalrez'." = 'D', tmpRez = '', rtime = '0', points = points - '$prateLosser'
                                                       WHERE username = '".$uName."';
                                                       
                                                       UPDATE oFight_users_HS SET defeatcount = defeatcount + 1 WHERE username = '".$uName."';

@@ -61,7 +61,9 @@
             </div>
             
             <div class="title-header"><h5>Аналитика карт</h5><hr></div>
+            {CARDMECHANICS}
             
+            <!-- 
             <div class="obj-widget-card">
                 <div class="img-link">
                     <a href="/news/analitika-legendarnyh-kart-varian-rinn" class="overlay"><div><div><span class="fui-link"></span></div></div></a>
@@ -74,7 +76,6 @@
                     <img src="http://ofight.ru/uploads/97b59e4b468b6c433a5e2916d2622b95.jpg" class="img-responsive" alt="">
                 </div>
             </div>
-            <!-- 
             <div class="obj-widget-card">
                 <div class="img-link">
                     <a href="/news/analitika-karty-silvana-opisanie-razlichnyh-klassov" class="overlay"><div><div><span class="fui-link"></span></div></div></a>
