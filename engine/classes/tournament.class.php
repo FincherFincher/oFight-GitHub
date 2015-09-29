@@ -144,15 +144,13 @@
                 $tUser = $this->tourUser($tData, $uName);
                 $round = $this->tourUserRound($tUser, $tData); 
                 $tEnemy = $this->tourEnemy($tData, $tUser, $round);
-                array_push($tUpdate, $tEnemy['username']);
-                $this->Kick_user_from_tourney($tData, $tUser, $round, $tEnemy)
 
-            } 
+                $this->Kick_user_from_tourney($tData, $tUser, $round, $tEnemy);  
+            }  
             return $tUpdate;
         }
         
 
-                            
         
         
         function Kick_user_from_tourney($tData, $tUser, $round, $tEnemy)
@@ -165,6 +163,18 @@
                              SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', points = -6 
                              WHERE username = '".$tUser['username']."' "; 
                     $this->db->query($sql);
+
+                    $FS_br_query = $this->db->query(" SELECT username FROM ".'oF_tour_brackettable_'.$tData['id']." WHERE username = 'Free Slot' AND r2 = '".$tUser['r2']."' ");
+                    if(count($FS_br_query) > 2)
+                    {
+                        $FS_se_query = $this->db->query(" SELECT username FROM ".'oF_table_'.$tData['id']." WHERE username = 'Free Slot' AND Backet = '".$tUser['r2']."' ");
+                        if( (count($FS_br_query) == 3 && count($FS_se_query) == 0) || (count($FS_br_query) == 4 && count($FS_se_query) == 1) )
+                        {
+                            $this->db->query(" UPDATE ".'oF_tour_table_'.$tData['id']." 
+                                               SET username = 'Free Slot', r1rez = 'D', r2finalrez = 'D', r2rez = 'D', r2finalrez = 'D', r3rez = 'D', r3finalrez = 'D', FreeSlotHide = 'y' 
+                                               WHERE Backet = '".$tUser['r2']."' AND username = '' ORDER BY r0 LIMIT 1 ");
+                        }
+                    }  
                 } else {
                     goto Kick_user_from_tourney_LEBEL;
                 }
@@ -172,10 +182,10 @@
             if($tData['tourmod'] == 'Olympia')
             {
                 Kick_user_from_tourney_LEBEL:
-                if($tEnemy['username'] == 'Free Slot')
+                if($tEnemy['username'] == 'Free Slot' || $tEnemy['FreeSlotHide'] == 'y')
                 {
                     $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." 
-                             SET ".'r'.$round.'rez'." = 'W',".'r'.$round.'finalrez'." = 'W', ".'r'.($round+1).'rez'." = 'D',".'r'.($round+1).'finalrez'." = 'D', FreeSlotHide = 'y' 
+                             SET ".'r'.$round.'rez'." = 'W',".'r'.$round.'finalrez'." = 'W', ".'r'.($round).'score'." = '2', ".'r'.($round+1).'rez'." = 'D',".'r'.($round+1).'finalrez'." = 'D', FreeSlotHide = 'y' 
                              WHERE username = '".$tUser['username']."' ";    
                 } else {
                     $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." SET ".'r'.$round.'rez'." = 'D',".'r'.$round.'finalrez'." = 'D', FreeSlotHide = 'y' WHERE username = '".$tUser['username']."' ";  
@@ -302,16 +312,7 @@
 
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         
         
@@ -319,70 +320,8 @@
         
         function getRoundOneAnalytic($tData, $round)
         {
-            if($round > 1)
-            {
-                $sql = " SELECT username, ".'r'.$round.'rez'.", ".'r'.$round.'finalrez'.", ".'r'.($round - 1).'finalrez'.", ".'Back_r'.$round.", rtime, status 
-                         FROM ".'oF_tour_brackettable_'.$tData['id']." ORDER BY ".'Back_r'.$round." ASC, r0 ASC ";
-            } else {
-                $sql = " SELECT username, ".'r'.$round.'rez'.", ".'r'.$round.'finalrez'.", ".'Back_r'.$round.", rtime, status 
-                         FROM ".'oF_tour_brackettable_'.$tData['id']." ORDER BY ".'Back_r'.$round." ASC, r0 ASC ";  
-            }
-            
-            $query = $this->db->query($sql);   
-            $data = $query->fetchAll(PDO::FETCH_ASSOC);  
-            
-            $now = strtotime('now');
-            $now = $now - 60 * 3; 
-            
-            $result = array();
-            for($i = 0; $i <= count($data) - 1; $i++ )
-            { 
-                if($i % 2 != 0)
-                {
-                    if($round > 1)
-                    {
-                        
-                        if(!empty($data[$i]['r'.($round - 1).'finalrez']) && !empty($data[$i - 1]['r'.($round - 1).'finalrez']))
-                        {
-                            if(!empty($data[$i]['r'.$round.'rez']) || !empty($data[$i - 1]['r'.$round.'rez']))
-                            {
-                                if(strtotime($data[$i]['rtime']) < $now)
-                                {
-                                    $data[$i - 1]['status'] = 'check';	
-                                } 
-
-                                if(strtotime($data[$i - 1]['rtime']) < $now)
-                                {
-                                    $data[$i]['status'] = 'check';	
-                                } 
-                            }
-
-                            array_push($result, $data[$i]);
-                            array_push($result, $data[$i - 1]);
-                        }
-                        
-                    } else {
-                        
-                        if( (!empty($data[$i]['r'.$round.'rez']) || !empty($data[$i - 1]['r'.$round.'rez'])) && (empty($data[$i]['r'.$round.'finalrez']) || empty($data[$i - 1]['r'.$round.'finalrez'])) )
-                        {
-                            if(strtotime($data[$i]['rtime']) < $now)
-                            {
-                                $data[$i - 1]['status'] = 'check';	
-                            } 
-
-                            if(strtotime($data[$i - 1]['rtime']) < $now)
-                            {
-                                $data[$i]['status'] = 'check';	
-                            }  
-                        }
-                        
-                        array_push($result, $data[$i]);
-                        array_push($result, $data[$i - 1]);
-                        
-                    }
-                }
-            }
-            return $result = array("data" => $result, "round" => $round);  
+            $sql = " SELECT username, ".'r'.$round.'rez'.", ".'r'.$round.'finalrez'." FROM ".'oF_tour_brackettable_'.$tData['id']." ORDER BY ".'Back_r'.$round." ASC, r0 ASC ";
+            return json_encode($this->db->query($sql)->fetchAll());
         }
    
             

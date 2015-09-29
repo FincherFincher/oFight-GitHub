@@ -397,8 +397,8 @@
                     $round = $tour->tourUserRound($tUser, $tData);  
                     $tEnemy = $tour->tourEnemy($tData, $tUser, $round);
                     $tEnemy_next = $tour->tourEnemy($tData, $tUser, min(($round + 1),3));
-                    echo $tour->Kick_user_from_tourney($tData, $tUser, $round, $tEnemy);
-                    
+                    $tour->Kick_user_from_tourney($tData, $tUser, $round, $tEnemy); echo 0;
+
                     $SHM = new Block($tData['id']);
                     $obj = json_decode($SHM->read(), true);
                     $obj[$tEnemy['username']] = 1;
@@ -453,7 +453,7 @@
                     $id = $_POST['id'];
                     $round = $_POST['round'];
                     $tData = $tour->getTourinfo($id); 
-                    echo json_encode($tour->getRoundOneAnalytic($tData, $round));
+                    echo $tour->getRoundOneAnalytic($tData, $round);
                     break;
                 
             //------> Delete twitch

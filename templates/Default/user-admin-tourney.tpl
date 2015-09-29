@@ -66,10 +66,9 @@
                 <table class="table unit-table">
                 <thead>
                   <tr>
-                    <th>Пара</th>
                     <th>Логин</th>
-                    <th>Результат</th>
-                    <th>Статус</th>
+                    <th>Рез_Первый</th>
+                    <th>Рез_Итоговый</th>
                   </tr>
                 </thead>
                 <tbody id="getRoundOneAnalytic_data"></tbody>

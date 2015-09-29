@@ -91,8 +91,8 @@
 
         function getGuidesById($quantity)
         {
-            $sql = " SELECT id FROM oFight_news WHERE guidesgame = 'Hearthstone' order by rand() limit " . $quantity;
-            return $this->db->query($sql);  
+            $sql = " SELECT * FROM oF_guides WHERE guidesgame = 'Hearthstone' order by rand() limit " . $quantity;
+            return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);  
         }
         
 

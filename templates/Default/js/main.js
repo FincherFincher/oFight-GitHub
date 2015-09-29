@@ -1275,78 +1275,47 @@ function testAjax(){
 
 
 
-    //------> Get Status Round 1   
-    function getRoundOneAnalytic(elem)
-    { 
-        var type = 'tour';
-        var mod = 'getRoundOneAnalytic';
+    //------> ANALITICS BRACKETS
+    function getRoundOneAnalytic(elem){ 
         var id = $(elem).parent().parent().parent().attr('name');
         var round = $(elem).parent().find('#getRoundOneAnalytic_round').val();
         var error = new Array( 'Введите раунд', 'В группах 3 раунда'); 
         var answer = $(elem).parent().find('.dialog');
         var block = $(elem).parent().parent().find('.unit-table').find('#getRoundOneAnalytic_data');
-
-        block.slideUp(100, function()
-        {
+        block.slideUp(100, function(){
             block.slideDown().html('');
             $('#getRoundOneAnalytic_info').html('');
-            if(round == '')
-            {
-                answer.removeClass().addClass("dialog dialog-danger").html(error[0]).slideDown(350); 
-                return false;
-            }
-            
-            if(round > 3)
-            {
-                answer.removeClass().addClass("dialog dialog-danger").html(error[1]).slideDown(350); 
-                return false;
+            if(round == ''){
+                answer.removeClass().addClass("dialog dialog-danger").html(error[0]).slideDown(350); return false;
+            } 
+            if(round > 3){
+                answer.removeClass().addClass("dialog dialog-danger").html(error[1]).slideDown(350); return false;
             }  
-            
-            answer.slideUp(450, function()
-            {
-                    $('#getRoundOneAnalytic_info').html('').append('<p>Данные проверки '+round+'-го раунда</p>');
-                    $.ajax({
-                        type: "POST", url: "/ajax.php", 
-                        data:{type:type, mod:mod, round:round, id:id},
-                        success: function(data)
-                        {
-
-                            data = JSON.parse(data);
-             
-                            for(i = 0; i < data.data.length; i++)
-                            {
-                                var color = 'white';
-                                if(data.data[i].status == 'check')
-                                {
-                                    var color = '#e74c3c';
-                                }
-
-                                if(data.round == '1')
-                                {
-                                    block.append('<tr style="background: '+color+'"><td>'+data.data[i].Back_r1+'</td><td>'+data.data[i].username+'</td><td>'+data.data[i].r1rez+'</td><td>'+data.data[i].status+'</td></tr>');  
-                                }
-                                if(data.round == '2')
-                                {
-                                    block.append('<tr style="background: '+color+'"><td>'+data.data[i].Back_r2+'</td><td>'+data.data[i].username+'</td><td>'+data.data[i].r2rez+'</td><td>'+data.data[i].status+'</td></tr>');  
-                                }
-                                if(data.round == '3')
-                                {
-                                    block.append('<tr style="background: '+color+'"><td>'+data.data[i].Back_r3+'</td><td>'+data.data[i].username+'</td><td>'+data.data[i].r3rez+'</td><td>'+data.data[i].status+'</td></tr>');  
-                                }
-                                
-                                
-                             
-                            }  
-                        },
-                    }); 
-
+            answer.slideUp(450, function(){
+                $('#getRoundOneAnalytic_info').html('').append('<p>Данные проверки '+round+'-го раунда</p>');
+                $.post('/ajax.php', {type:'tour', mod:'getRoundOneAnalytic', round:round, id:id}, function(data){
+                    data = JSON.parse(data);
+                    i = 0; while(i < data.length){ 
+                        if(i%2 != 0){ 
+                            k = i - 1; col = '';
+                            
+                            if(data[i]['r'+round+'finalrez'] != '' && data[k]['r'+round+'finalrez'] != ''){
+                                col = '#2ecc71';
+                            } else if ( (data[i]['r'+round+'rez'] != '' && data[k]['r'+round+'rez'] == '') || (data[i]['r'+round+'rez'] == '' && data[k]['r'+round+'rez'] != '') ){
+                                col = '#e74c3c';
+                            } else {
+                                col = '';
+                            }
+                            block.append('<tr style="background: '+col+';"><td>'+data[i]['username']+'</td><td>'+data[i]['r'+round+'rez']+'</td><td>'+data[i]['r'+round+'finalrez']+'</td></tr>');
+                            block.append('<tr style="background: '+col+';"><td>'+data[k]['username']+'</td><td>'+data[k]['r'+round+'rez']+'</td><td>'+data[k]['r'+round+'finalrez']+'</td></tr>');
+                        } 
+                    i++}
+                }); 
             }); 
-
-        });    
-            
+        });        
     }
 
-
+/* <tr><td>'++'</td><td>'++'</td><td>'++'</td><td>'++'</td></tr> */
 
     /***********************
                          sendVacancy
