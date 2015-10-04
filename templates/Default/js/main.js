@@ -1860,8 +1860,29 @@ function testAjax(){
   
         }
         
+        
+
+        
+        
         if(location.pathname.split("/")[1] == 'bracket'){ 
-            
+        
+            function check_empty_bracket(group, name){
+                function fs_count(group){ var fs_c = 0; for(k = 0; k < 4; k++){ if(group[k]['un'] == 'Free Slot'){ fs_c++; } } return fs_c;}
+                fs_c = fs_count(group);
+                var p_c = 0;
+                for(k = 0; k < 4; k++){
+                    if(group[k]['un'] != 'Free Slot'){
+                        if(jQuery.inArray(group[k]['un'], name) !== -1){
+                            p_c++;
+                        }  
+                    }
+                }
+                if( (fs_c < 3 && p_c == 2) || (fs_c == 3 && p_c == 1) || (fs_c == 4) ){
+                    return '#bdc3c7';
+                }
+                return '#ECF0F1';
+            }
+       
             var minimalData = (function() {
                 var type = 'tour';
                 var mod = 'getBracket';
@@ -1872,25 +1893,22 @@ function testAjax(){
                     async: false,
                     url: "/ajax.php",
                     data:{type:type, mod:mod, id:id},
-                    success: function (data) {
+                    success: function(data){
                         if(!data){
                             $('#tourBracket-inner').hide();
                         }
                         var data = JSON.parse(data);
-                        
                         if(data.tData){
                             if(data.group != null){
-
                                 var gN = new Array();
-                                var alphabet = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL');   
-                                for(j = 0; j <= 30; j++)
-                                {
+                                var alphabet = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 'AL');   
+                                for(j = 0; j <= 30; j++){
                                     gN[j] = alphabet[j];
                                 }
                                 
-                                for(i = 0; i < Object.keys(data.group).length; i++)
-                                {
-                                    $('#tourBracket-group').append('<div class="tourBracket-gBlock"><p>Группа '+gN[i]+'</p><div><div>'+data.group[i][0].un+'</div><div>'+data.group[i][0].sc+'</div></div><div><div>'+data.group[i][1].un+'</div><div>'+data.group[i][1].sc+'</div></div><div><div>'+data.group[i][2].un+'</div><div>'+data.group[i][2].sc+'</div></div><div><div>'+data.group[i][3].un+'</div><div>'+data.group[i][3].sc+'</div></div></div>');
+                                for(i = 0; i < Object.keys(data.group).length; i++){
+                                    color = check_empty_bracket(data.group[i], data.SE_Names);
+                                    $('#tourBracket-group').append('<div class="tourBracket-gBlock"><p>Группа '+gN[i]+'</p><div><div style="background: '+color+'">'+data.group[i][0].un+'</div><div style="background: '+color+'">'+data.group[i][0].sc+'</div></div><div><div style="background: '+color+'">'+data.group[i][1].un+'</div><div style="background: '+color+'">'+data.group[i][1].sc+'</div></div><div><div style="background: '+color+'">'+data.group[i][2].un+'</div><div style="background: '+color+'">'+data.group[i][2].sc+'</div></div><div><div style="background: '+color+'">'+data.group[i][3].un+'</div><div style="background: '+color+'">'+data.group[i][3].sc+'</div></div></div>');
                                 }
                                 
                             } else {

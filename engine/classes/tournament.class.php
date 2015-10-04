@@ -159,20 +159,25 @@
             {
                 if(empty($tUser['MoveTo_SE']))
                 { 
+
                     $sql = " UPDATE ".'oF_tour_brackettable_'.$tData['id']." 
                              SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', points = -6 
                              WHERE username = '".$tUser['username']."' "; 
                     $this->db->query($sql);
-
-                    $FS_br_query = $this->db->query(" SELECT username FROM ".'oF_tour_brackettable_'.$tData['id']." WHERE username = 'Free Slot' AND r2 = '".$tUser['r2']."' ");
+                    $FS_br_query = $this->db->query(" SELECT username FROM ".'oF_tour_brackettable_'.$tData['id']." WHERE username = 'Free Slot' AND r2 = '".$tUser['r2']."' ")->fetchAll(PDO::FETCH_ASSOC);
                     if(count($FS_br_query) > 2)
                     {
-                        $FS_se_query = $this->db->query(" SELECT username FROM ".'oF_table_'.$tData['id']." WHERE username = 'Free Slot' AND Backet = '".$tUser['r2']."' ");
-                        if( (count($FS_br_query) == 3 && count($FS_se_query) == 0) || (count($FS_br_query) == 4 && count($FS_se_query) == 1) )
+                        $data_TF = $this->db->query(" SELECT id, r1 FROM ".'oF_tour_table_'.$tData['id']." WHERE Backet = '".$tUser['r2']."' ORDER BY r0 LIMIT 1 ")->fetchAll(PDO::FETCH_ASSOC);
+                        $enemy_TF = $this->db->query(" SELECT username FROM ".'oF_tour_table_'.$tData['id']." WHERE r1 = '".$data_TF[0]['r1']."' AND id != '".$data_TF[0]['id']."' ")->fetchAll(PDO::FETCH_COLUMN);
+                        if($enemy_TF[0] == 'Free Slot')
                         {
                             $this->db->query(" UPDATE ".'oF_tour_table_'.$tData['id']." 
-                                               SET username = 'Free Slot', r1rez = 'D', r2finalrez = 'D', r2rez = 'D', r2finalrez = 'D', r3rez = 'D', r3finalrez = 'D', FreeSlotHide = 'y' 
-                                               WHERE Backet = '".$tUser['r2']."' AND username = '' ORDER BY r0 LIMIT 1 ");
+                                               SET username = 'Free Slot', r1rez = 'W', r1finalrez = 'W', r2rez = 'D', r2finalrez = 'D', r3rez = 'D', r3finalrez = 'D', FreeSlotHide = 'y', r1score = '2'
+                                               WHERE Backet = '".$tUser['r2']."' AND username = '' ORDER BY r0 LIMIT 1 "); 
+                        } else {
+                            $this->db->query(" UPDATE ".'oF_tour_table_'.$tData['id']." 
+                                               SET username = 'Free Slot', r1rez = 'D', r1finalrez = 'D', r2rez = 'D', r2finalrez = 'D', r3rez = 'D', r3finalrez = 'D', FreeSlotHide = 'y' 
+                                               WHERE Backet = '".$tUser['r2']."' AND username = '' ORDER BY r0 LIMIT 1 "); 
                         }
                     }  
                 } else {
@@ -186,9 +191,11 @@
                 {
                     $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." 
                              SET ".'r'.$round.'rez'." = 'W',".'r'.$round.'finalrez'." = 'W', ".'r'.($round).'score'." = '2', ".'r'.($round+1).'rez'." = 'D',".'r'.($round+1).'finalrez'." = 'D', FreeSlotHide = 'y' 
-                             WHERE username = '".$tUser['username']."' ";    
+                             WHERE id = '".$tUser['id']."' ";    
                 } else {
-                    $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." SET ".'r'.$round.'rez'." = 'D',".'r'.$round.'finalrez'." = 'D', FreeSlotHide = 'y' WHERE username = '".$tUser['username']."' ";  
+                    $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." 
+                             SET ".'r'.$round.'rez'." = 'D',".'r'.$round.'finalrez'." = 'D', FreeSlotHide = 'y' 
+                             WHERE id = '".$tUser['id']."' ";  
                 }
                 $this->db->query($sql);
             } 
@@ -1616,7 +1623,9 @@
 
                 array_push($results, $arrWinnerBracket);
 
-                return $data = array("group" => $group, "winners" => array("teams" => $players, "results" => $results));  
+                $SE_Names = $this->db->query(" SELECT username FROM ".'oF_tour_table_'.$tData['id']." WHERE username != '' ")->fetchAll(PDO::FETCH_COLUMN);
+
+                return $data = array("group" => $group, "SE_Names" => $SE_Names, "winners" => array("teams" => $players, "results" => $results));  
             }
             
             if($tData['tourmod'] == 'Olympia')

@@ -195,10 +195,12 @@
                         $data['tData'] = new stdClass();
                         $data['bracket'] = new stdClass();
                         $data['group'] = new stdClass();
+                        $data['SE_Names'] = new stdClass();
                         $data['tData'] = $tData;
                         $data['bracket'] = $tBracket['winners'];
                         $data['group'] = $tBracket['group'];
                         $data['status'] = $tStatus;
+                        $data['SE_Names'] = $tBracket['SE_Names']; 
                     } else {
                         $data = '';
                     }
