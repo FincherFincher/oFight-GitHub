@@ -146,6 +146,14 @@
                                                             <span>Регистрация пройдена</span>
                                                         </div>
                                                     </div>
+                                                  ',
+                                   'tourEnd' => '
+                                                    <div class="unit-v4 unit-rdy">
+                                                        <div class="unit-v1">
+                                                            <span class="fa fa-check-square fa-fw"></span>
+                                                            <span>Турнир закончен</span>
+                                                        </div>
+                                                    </div>
                                                   '
                         ),
         

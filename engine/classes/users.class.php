@@ -202,6 +202,11 @@
         }
 
         
+        function getTourWinner($tData)
+        {
+            return $this->db->query(" SELECT username FROM oF_tour_winners WHERE tourname = '".$tData['tourname']."' ")->fetch();
+        }
+        
     /***********************
                            VACANCY
                                 ***********************/

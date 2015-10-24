@@ -63,34 +63,7 @@
             <div class="title-header"><h5>Аналитика карт</h5><hr></div>
             {CARDMECHANICS}
             
-            <!-- 
-            <div class="obj-widget-card">
-                <div class="img-link">
-                    <a href="/news/analitika-legendarnyh-kart-varian-rinn" class="overlay"><div><div><span class="fui-link"></span></div></div></a>
-                    <img src="http://ofight.ru/uploads/974a2f21489ea379b3df647979c5192f.jpg" class="img-responsive" alt="">
-                </div>
-            </div>
-            <div class="obj-widget-card">
-                <div class="img-link">
-                    <a href="/news/stoit-li-sozdavat-kartu-mariehl-chistoserdechnaya" class="overlay"><div><div><span class="fui-link"></span></div></div></a>
-                    <img src="http://ofight.ru/uploads/97b59e4b468b6c433a5e2916d2622b95.jpg" class="img-responsive" alt="">
-                </div>
-            </div>
-            <div class="obj-widget-card">
-                <div class="img-link">
-                    <a href="/news/analitika-karty-silvana-opisanie-razlichnyh-klassov" class="overlay"><div><div><span class="fui-link"></span></div></div></a>
-                    <img src="http://ofight.ru/uploads/5a045de98b128ca4d9e102a35b2702a8.jpg" class="img-responsive" alt="">
-                </div>
-            </div>
-            --> 
-            <!-- VK Widget
-            <div class="hidden-xs">
-                <div class="title-header"><h5>Вконтакте</h5><hr></div>
-                <div class="block">
-                    <div id="vk_groups" name="0:250"></div>
-                </div>   
-            </div>
-            --> 
+            
         </div>
     </div>
 </div>

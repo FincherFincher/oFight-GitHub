@@ -76,7 +76,7 @@
                 <div>
                     <div class="unit-v1">
                         <span class="fa fa-weixin fa-fw"></span>
-                        <span>Ждем всех в нашем чате!</span>
+                        <span>Ждем всех в нашем чате! </span>
                         <span><a href="/chat">&nbsp;&nbsp;&nbsp;Войти в чат&nbsp;&nbsp;&nbsp;</a></span>
                     </div>
                 </div>
@@ -85,8 +85,15 @@
             <div class="block unit news-fl tourpagestyle">
                 <img src="/uploads/sys/gamePic-Hearthstone.jpg" class="img-responsive" alt="Турниры по oFight.ru">
                 {TOURBLOCKMID}
+
+                <div class="social-btn"><script type="text/javascript">document.write(VK.Share.button(false,{type: "round", text: "Я в турнире"}));</script></div>
+                
                 <div><p>{TOURPLAYERS}</p></div>
             </div>
+
+            
+            
+
         
         </div>
         

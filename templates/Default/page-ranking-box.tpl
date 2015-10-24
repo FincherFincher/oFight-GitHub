@@ -50,6 +50,20 @@
                 </div>
             </div>
         </div>
+        
+            <!-- Google adsense --> 
+            <div class="hidden-xs">
+                <div class="title-header"><h5>Рекламный блок</h5><hr></div>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-5681924169238083"
+                     data-ad-slot="8369933052"
+                     data-ad-format="auto"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        
     </div>
     
 </div>

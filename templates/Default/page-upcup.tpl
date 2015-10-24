@@ -7,15 +7,15 @@
             <img src="/uploads/sys/up-1.jpg" class="img-responsive" alt="Онлайн турниры UPCUP от журнала UPgrade.ru">
 
             <div class="block unit tourpagestyle">
-                <!--
+                
                 <div class="unit-v3">Турнирное расписание:</div>
                
                 <div class="unit-v1">
                     <span class="fa fa-trophy fa-fw"></span>
-                    <span>UPCUP # 3</span>
-                    <span class="unit-btn-green pointer" onclick="window.open('/tourney/9' ,'_self');">&nbsp;&nbsp;&nbsp;12 сентября&nbsp;&nbsp;&nbsp;</span>
+                    <span>UPCUP # 4</span>
+                    <span class="unit-btn-green pointer" onclick="window.open('/tourney/34' ,'_self');">&nbsp;&nbsp;&nbsp;7 ноября&nbsp;&nbsp;&nbsp;</span>
                 </div>
-                -->
+               
                 
                 
                 

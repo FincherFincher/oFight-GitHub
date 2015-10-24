@@ -81,7 +81,7 @@
 					<li><a href="/vacancy">Вакансии<!--<span class="navbar-new nav-menu-status">N!</span>--></a></li>
 					<li><a href="/page-all-tournaments">Турниры</a></li>
 					<li><a href="/page-ranking">Рейтинг</a></li>
-					<li><a href="/upcup">UPCUP<span class="navbar-new navbar-new-custom">&nbsp;new&nbsp;</span></a></li>
+					<li><a href="/upcup">UPCUP<!--<span class="navbar-new navbar-new-custom">&nbsp;new&nbsp;</span>--></a></li>
 					
 					<!--
 					<li class="dropdown">

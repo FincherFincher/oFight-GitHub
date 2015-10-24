@@ -159,7 +159,7 @@
             {
                 if(empty($tUser['MoveTo_SE']))
                 { 
-
+                    Kick_user_from_tourney_LEBEL_2:
                     $sql = " UPDATE ".'oF_tour_brackettable_'.$tData['id']." 
                              SET username = 'Free Slot', r1rez = 'D', r1finalrez  = 'D', r2rez = 'D', r2finalrez  = 'D', r3rez = 'D', r3finalrez  = 'D', points = -6 
                              WHERE username = '".$tUser['username']."' "; 
@@ -187,6 +187,14 @@
             if($tData['tourmod'] == 'Olympia')
             {
                 Kick_user_from_tourney_LEBEL:
+                
+                // check if player in Olympia if not goto Kick_user_from_tourney_LEBEL_2;
+                $check = $this->db->query(" SELECT username FROM ".'oF_tour_table_'.$tData['id']." WHERE username = '".$tUser['username']."' ");
+                if(count($check) == 0){
+                    goto Kick_user_from_tourney_LEBEL_2;  
+                }
+                
+                
                 if($tEnemy['username'] == 'Free Slot' || $tEnemy['FreeSlotHide'] == 'y')
                 {
                     $sql = " UPDATE ".'oF_tour_table_'.$tData['id']." 
@@ -406,7 +414,7 @@
         
         function getTour()
         {
-            return $this->db->query("SELECT * FROM oF_tour_cPanel WHERE tourspecial = '' ORDER BY tourdate ASC LIMIT 5")->fetchAll(); 
+            return $this->db->query("SELECT * FROM oF_tour_cPanel WHERE tourspecial = '' ORDER BY tourdate ASC LIMIT 4")->fetchAll(); 
         }
         function getFutureTour()
         {
@@ -416,16 +424,25 @@
         {
             return $this->db->query(" SELECT * FROM oF_tour_cPanel_Past ORDER BY tourdate DESC ")->fetchAll();
         }
+        function getPastTourByiD($id)
+        {
+            $query = $this->db->prepare(" SELECT * FROM oF_tour_cPanel_Past WHERE id = ? ");
+            $query->execute(array($id));
+            return $query->fetch();
+        }
         function getTourSpecial()
         {
             return $this->db->query("SELECT * FROM oF_tour_cPanel WHERE tourspecial != '' ORDER BY tourdate ASC LIMIT 2")->fetchAll(); 
         }
         
+        function getTourPlayersInArchive($tData)
+        {
+            return $this->db->query("SELECT COUNT(*) FROM oF_tour_archive WHERE tourname = '".$tData['tourname']."' ")->fetch();  
+        }
         
         
         
-        
-        
+
         
         
         

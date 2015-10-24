@@ -11,7 +11,9 @@
     
     <!-- VK -->
     <script type="text/javascript" src="//vk.com/js/api/openapi.js?116"></script>
-    
+    <script type="text/javascript" src="http://vk.com/js/api/share.js?92" charset="windows-1251"></script>
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?117"></script>
+   
     <link rel="shortcut icon" href="/uploads/sys/favicon.ico">
     
     <!-- http://fontawesome.io/ -->
@@ -41,3 +43,9 @@
         ga('create', 'UA-67984404-1', 'auto');
         ga('send', 'pageview');
     </script>
+    
+    <!-- Google adsence -->
+    <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    <!-- Ya webmaster -->
+    <meta name='yandex-verification' content='552bed4e4dce3c72' />

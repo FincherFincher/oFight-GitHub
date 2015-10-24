@@ -6,6 +6,9 @@
                     <img src="{IMAGE}" class="img-responsive" alt="{TITLE}">
                 </div>    
                 <div class="news-info">Автор: {AUTHOR}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Дата: {DATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fui-eye"></span>&nbsp;&nbsp;{VIEWS}</div>
+                
+                <div class="social-btn-news"><script type="text/javascript">document.write(VK.Share.button(false,{type: "round", text: "Интересная статья"}));</script></div> 
+
                 <div class="news-fl">
                     <!-- <h1>{TITLE}</h1> -->
                     
@@ -16,6 +19,20 @@
             </div>
         </div>
         <div class="col-xs-6 col-md-4">
+           
+            <!-- Google adsense --> 
+            <div class="hidden-xs">
+                <div class="title-header"><h5>Рекламный блок</h5><hr></div>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-5681924169238083"
+                     data-ad-slot="8369933052"
+                     data-ad-format="auto"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+           
             <div class="title-header"><h5>Коммент's</h5><hr></div>
             <div class="block news-cm">
                  
@@ -35,6 +52,8 @@
                <table id="comments" class="user-logo-table">
                     {COMMENTS}
                </table>
+               
+               
                
             </div>
         </div>

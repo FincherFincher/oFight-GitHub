@@ -1521,7 +1521,7 @@ function testAjax(){
                                         success: function(data){
                                             enemyGr = JSON.parse(data);
                                             var gN = new Array();
-                                            var alphabet = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL');  
+                                            var alphabet = new Array('', 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL');  
                                             for(j = 0; j <= 30; j++)
                                             {
                                                 gN[j] = alphabet[j];
@@ -1878,7 +1878,7 @@ function testAjax(){
                     }
                 }
                 if( (fs_c < 3 && p_c == 2) || (fs_c == 3 && p_c == 1) || (fs_c == 4) ){
-                    return '#bdc3c7';
+                    return '#ddd';
                 }
                 return '#ECF0F1';
             }
@@ -1908,7 +1908,8 @@ function testAjax(){
                                 
                                 for(i = 0; i < Object.keys(data.group).length; i++){
                                     color = check_empty_bracket(data.group[i], data.SE_Names);
-                                    $('#tourBracket-group').append('<div class="tourBracket-gBlock"><p>Группа '+gN[i]+'</p><div><div style="background: '+color+'">'+data.group[i][0].un+'</div><div style="background: '+color+'">'+data.group[i][0].sc+'</div></div><div><div style="background: '+color+'">'+data.group[i][1].un+'</div><div style="background: '+color+'">'+data.group[i][1].sc+'</div></div><div><div style="background: '+color+'">'+data.group[i][2].un+'</div><div style="background: '+color+'">'+data.group[i][2].sc+'</div></div><div><div style="background: '+color+'">'+data.group[i][3].un+'</div><div style="background: '+color+'">'+data.group[i][3].sc+'</div></div></div>');
+                                    if(color == '#ddd'){color2 = '#999';} else {color2 = 'black';}
+                                    $('#tourBracket-group').append('<div class="tourBracket-gBlock" style="color: '+color2+'"><p>Группа '+gN[i]+'</p><div><div style="background: '+color+'">'+data.group[i][0].un+'</div><div style="background: '+color+'">'+data.group[i][0].sc+'</div></div><div><div style="background: '+color+'">'+data.group[i][1].un+'</div><div style="background: '+color+'">'+data.group[i][1].sc+'</div></div><div><div style="background: '+color+'">'+data.group[i][2].un+'</div><div style="background: '+color+'">'+data.group[i][2].sc+'</div></div><div><div style="background: '+color+'">'+data.group[i][3].un+'</div><div style="background: '+color+'">'+data.group[i][3].sc+'</div></div></div>');
                                 }
                                 
                             } else {
